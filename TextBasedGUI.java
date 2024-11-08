@@ -114,13 +114,13 @@ public class TextBasedGUI {
 		
 		//Verificación de Selección de Menu Principal
 	    while (!isInputValid) {
-			System.out.println("Selecciona una opción: ");
+			System.out.println("Selecciona una opción (1-7): ");
 			menuSelection = inputScanner.nextLine();
 			
 			isInputValid = true;
 			switch (menuSelection) {
 				case "1":
-					System.out.println("1!");
+					MenuSelections.verDisponibilidadEstadio();
 					break;
 				case "2":
 					System.out.println("2!");
@@ -147,13 +147,6 @@ public class TextBasedGUI {
 					break;
 			}
 	    }
-	}
-	
-	public static void verDisponibilidadEstadio() {
-	}
-	
-	public static void main(String[] args) {
-		loginScreen();
 	}
 	
 }
