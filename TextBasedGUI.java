@@ -89,24 +89,24 @@ public class TextBasedGUI {
         isInputValid = false;
         
         currentClient = new Clients(clientName, clientEmail, clientPhoneNumber);
-        
+		
+		System.out.println("\n" + "━━━━━━━━━━━━━━━━━━━━━━━━━");
+		System.out.println("BIENVENIDO, " + currentClient.getClientName());
+		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━");
+		
         mainMenuScreen();
 	}
 	
 	public static void mainMenuScreen() {
 		
 		System.out.println("\n" + "━━━━━━━━━━━━━━━━━━━━━━━━━");
-		System.out.println("BIENVENIDO, " + currentClient.getClientName());
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━");
-		
-		System.out.println("\n" + "━━━━━━━━━━━━━━━━━━━━━━━━━");
 		System.out.println("      MENÚ PRINCIPAL");
 		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━" + "\n");
 		
 		System.out.println("1. Ver Disponibilidad del Estadio");
-		System.out.println("2. Ver Reservación");
+		System.out.println("2. Ver Reservaciones");
 		System.out.println("3. Realizar Pago");
-		System.out.println("4. Cancelar Reservación");
+		System.out.println("4. Cancelar Reservaciones");
 		System.out.println("5. Ver Lista de Espera");
 		System.out.println("5. Ver Datos del Cliente");
 		System.out.println("6. Cerrar Sesión");
@@ -125,8 +125,8 @@ public class TextBasedGUI {
 					MenuSelections.stadiumAvailability();;
 					break;
 				case "2":
-					System.out.println("2!");
-					break;
+					MenuSelections.viewReservations();
+					return;
 				case "3":
 					System.out.println("3!");
 					break;
@@ -135,13 +135,13 @@ public class TextBasedGUI {
 					break;
 				case "5":
 					MenuSelections.clientData();
-					break;
+					return;
 				case "6":
 					loginScreen();
-					break;
+					return;
 				case "7":
 					MenuSelections.exitProgram();
-					break;
+					return;
 				default:
 					System.out.println("Selección no válida!");
 					isInputValid = false;

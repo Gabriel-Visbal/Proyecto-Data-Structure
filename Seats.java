@@ -9,6 +9,7 @@ public class Seats {
 	public String seatLevel;
 	public int seatRow;
 	public int seatNumber;
+	public int seatPrice;
 	boolean isSeatInUse;
 	
 	public static Set<Seats> seatsSet = new HashSet<Seats>();
@@ -22,6 +23,15 @@ public class Seats {
 		this.seatRow = seatRow;
 		this.seatNumber = seatNumber;
 		this.isSeatInUse = isSeatInUse;
+		
+		if (this.seatLevel.equals("Field")) {
+			this.seatPrice = 300;
+		} else if (this.seatLevel.equals("Main")) {
+			this.seatPrice = 120;
+		} else if (this.seatLevel.equals("Grandstand")) {
+			this.seatPrice = 45;
+		}
+		
 	}
 	
 	public String getSeatLevel() {
@@ -48,6 +58,14 @@ public class Seats {
 		this.seatNumber = newSeatNumber;
 	}
 	
+	public int getSeatPrice() {
+		return this.seatPrice;
+	}
+	
+	public void setSeatPrice(int newSeatPrice) {
+		this.seatPrice = newSeatPrice;
+	}
+	
 	public boolean isSeatInUse() {
 		return this.isSeatInUse;
 	}
@@ -64,7 +82,7 @@ public class Seats {
 			return "Sección: " + this.getSeatLevel() + ", Fila: #" + this.getSeatRow() + ", Asiento: #" + this.getSeatNumber()+ ", En Uso? No";
 		}
 	}
-
+	
 	public static void initializeFieldSeats() {
         int totalRows = 4;
         int seatsPerRow = 5;
