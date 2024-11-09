@@ -12,6 +12,7 @@ public class Seats {
 	boolean isSeatInUse;
 	
 	public static Set<Seats> seatsSet = new HashSet<Seats>();
+	
 	public static ArrayList<Seats> fieldSeats = new ArrayList<Seats>();
 	public static ArrayList<Seats> mainSeats = new ArrayList<Seats>();
 	public static ArrayList<Seats> grandstandSeats = new ArrayList<Seats>();

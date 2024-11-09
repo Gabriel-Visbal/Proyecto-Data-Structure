@@ -5,10 +5,12 @@ public class TextBasedGUI {
 	public static Scanner inputScanner = new Scanner(System.in);
 
 	public static boolean isInputValid = false;
+	public static boolean isLevelInputValid = false;
 	
 	public static Clients currentClient;
 	
 	public static String menuSelection = "";
+	public static int menuSelectionInt;
 	
 	public static void loginScreen() {
 		
@@ -95,7 +97,7 @@ public class TextBasedGUI {
 		
 		System.out.println("\n" + "━━━━━━━━━━━━━━━━━━━━━━━━━");
 		System.out.println("BIENVENIDO, " + currentClient.getClientName());
-		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━" + "\n");
+		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━");
 		
 		System.out.println("\n" + "━━━━━━━━━━━━━━━━━━━━━━━━━");
 		System.out.println("      MENÚ PRINCIPAL");
@@ -120,7 +122,7 @@ public class TextBasedGUI {
 			isInputValid = true;
 			switch (menuSelection) {
 				case "1":
-					MenuSelections.verDisponibilidadEstadio();
+					MenuSelections.stadiumAvailability();;
 					break;
 				case "2":
 					System.out.println("2!");
@@ -132,14 +134,13 @@ public class TextBasedGUI {
 					System.out.println("4!");
 					break;
 				case "5":
-					System.out.println("5!");
+					MenuSelections.clientData();
 					break;
 				case "6":
-					System.out.println("6!");
 					loginScreen();
 					break;
 				case "7":
-					System.out.println("7!");
+					MenuSelections.exitProgram();
 					break;
 				default:
 					System.out.println("Selección no válida!");

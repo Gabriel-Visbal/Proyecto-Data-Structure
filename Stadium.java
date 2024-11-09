@@ -1,11 +1,18 @@
 package dataProject;
 
 public class Stadium {
+	
+	public static boolean programRunning = true;
+	
 	public static void main(String[] args) {
-		Seats.initializeFieldSeats();
-		Seats.initializeMainSeats();
 		
-		TextBasedGUI.loginScreen();
-		
+		while (programRunning) {
+			Seats.initializeFieldSeats();
+			Seats.initializeMainSeats();
+			Seats.initializeGrandstandSeats();
+			
+			TextBasedGUI.loginScreen();
+		}
+
 	}
 }
