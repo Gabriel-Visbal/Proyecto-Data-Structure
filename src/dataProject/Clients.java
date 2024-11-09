@@ -50,8 +50,8 @@ public class Clients {
 	
 	public void printClientData() {
 		System.out.println("Nombre: " + this.clientName);
-		System.out.println("Correo Electrónico: " + this.clientEmail);
-		System.out.println("Número de Teléfono: " + this.clientPhoneNumber);
+		System.out.println("Correo Electronico: " + this.clientEmail);
+		System.out.println("Numero de Telefono: " + this.clientPhoneNumber);
 	}
 	
 	@Override

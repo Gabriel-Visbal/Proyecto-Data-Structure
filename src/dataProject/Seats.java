@@ -24,12 +24,18 @@ public class Seats {
 		this.seatNumber = seatNumber;
 		this.isSeatInUse = isSeatInUse;
 		
-		if (this.seatLevel.equals("Field")) {
-			this.seatPrice = 300;
-		} else if (this.seatLevel.equals("Main")) {
-			this.seatPrice = 120;
-		} else if (this.seatLevel.equals("Grandstand")) {
-			this.seatPrice = 45;
+		switch (this.seatLevel) {
+			case "Field":
+				this.seatPrice = 300;
+				break;
+			case "Main":
+				this.seatPrice = 120;
+				break;
+			case "Grandstand":
+				this.seatPrice = 45;
+				break;
+			default:
+				break;
 		}
 		
 	}
@@ -77,9 +83,9 @@ public class Seats {
 	@Override
 	public String toString() {
 		if (this.isSeatInUse()) {
-			return "Sección: " + this.getSeatLevel() + ", Fila: #" + this.getSeatRow() + ", Asiento: #" + this.getSeatNumber()+ ", En Uso? Si";
+			return "Seccion: " + this.getSeatLevel() + ", Fila: #" + this.getSeatRow() + ", Asiento: #" + this.getSeatNumber()+ ", En Uso? Si";
 		} else {
-			return "Sección: " + this.getSeatLevel() + ", Fila: #" + this.getSeatRow() + ", Asiento: #" + this.getSeatNumber()+ ", En Uso? No";
+			return "Seccion: " + this.getSeatLevel() + ", Fila: #" + this.getSeatRow() + ", Asiento: #" + this.getSeatNumber()+ ", En Uso? No";
 		}
 	}
 	
