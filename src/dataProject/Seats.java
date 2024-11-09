@@ -10,7 +10,6 @@ public class Seats {
 	public int seatRow;
 	public int seatNumber;
 	public int seatPrice;
-	boolean isSeatInUse;
 	
 	public static Set<Seats> seatsSet = new HashSet<Seats>();
 	
@@ -18,11 +17,10 @@ public class Seats {
 	public static ArrayList<Seats> mainSeats = new ArrayList<Seats>();
 	public static ArrayList<Seats> grandstandSeats = new ArrayList<Seats>();
 	
-	Seats(String seatLevel, int seatRow, int seatNumber, boolean isSeatInUse) {
+	Seats(String seatLevel, int seatRow, int seatNumber) {
 		this.seatLevel = seatLevel;
 		this.seatRow = seatRow;
 		this.seatNumber = seatNumber;
-		this.isSeatInUse = isSeatInUse;
 		
 		switch (this.seatLevel) {
 			case "Field":
@@ -72,20 +70,12 @@ public class Seats {
 		this.seatPrice = newSeatPrice;
 	}
 	
-	public boolean isSeatInUse() {
-		return this.isSeatInUse;
-	}
-	
-	public void setIsSeatInUse(boolean newIsSeatInUse) {
-		this.isSeatInUse = newIsSeatInUse;
-	}
-	
 	@Override
 	public String toString() {
-		if (this.isSeatInUse()) {
-			return "Seccion: " + this.getSeatLevel() + ", Fila: #" + this.getSeatRow() + ", Asiento: #" + this.getSeatNumber()+ ", En Uso? Si";
+		if (Stadium.clientSeatReserved.containsKey(this)) {
+			return "Seccion: " + this.getSeatLevel() + ", Fila: #" + this.getSeatRow() + ", Asiento: #" + this.getSeatNumber()+ ", Reservado por: " + Stadium.clientSeatReserved.get(this) + ".";
 		} else {
-			return "Seccion: " + this.getSeatLevel() + ", Fila: #" + this.getSeatRow() + ", Asiento: #" + this.getSeatNumber()+ ", En Uso? No";
+			return "Seccion: " + this.getSeatLevel() + ", Fila: #" + this.getSeatRow() + ", Asiento: #" + this.getSeatNumber()+ ", No Reservado.";
 		}
 	}
 	
@@ -95,7 +85,7 @@ public class Seats {
 
         for (int row = 1; row <= totalRows; row++) {
             for (int seat = 1; seat <= seatsPerRow; seat++) {
-            	Seats newSeat = new Seats("Field", row, seat, false);
+            	Seats newSeat = new Seats("Field", row, seat);
             	seatsSet.add(newSeat);
             	fieldSeats.add(newSeat);
             }
@@ -108,7 +98,7 @@ public class Seats {
 
         for (int row = 1; row <= totalRows; row++) {
             for (int seat = 1; seat <= seatsPerRow; seat++) {
-            	Seats newSeat = new Seats("Main", row, seat, false);
+            	Seats newSeat = new Seats("Main", row, seat);
             	seatsSet.add(newSeat);
             	mainSeats.add(newSeat);
             }
@@ -121,7 +111,7 @@ public class Seats {
 
         for (int row = 1; row <= totalRows; row++) {
             for (int seat = 1; seat <= seatsPerRow; seat++) {
-            	Seats newSeat = new Seats("Grandstand", row, seat, false);
+            	Seats newSeat = new Seats("Grandstand", row, seat);
             	seatsSet.add(newSeat);
             	grandstandSeats.add(newSeat);
             }

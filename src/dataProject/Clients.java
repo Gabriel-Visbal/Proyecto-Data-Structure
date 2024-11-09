@@ -6,7 +6,6 @@ public class Clients {
 	public String clientName;
 	public String clientEmail;
 	public String clientPhoneNumber;
-	public int clientPay = 0;
 	
 	public LinkedList<Seats> reservedSeats = new LinkedList<Seats>();
 	
@@ -38,14 +37,6 @@ public class Clients {
 	
 	public void setClientPhoneNumber(String newClientPhoneNumber) {
 		this.clientPhoneNumber = newClientPhoneNumber;
-	}
-	
-	public int getClientPay() {
-		return this.clientPay;
-	}
-	
-	public void setClientPay(int newClientPay) {
-		this.clientPay = newClientPay;
 	}
 	
 	public void printClientData() {

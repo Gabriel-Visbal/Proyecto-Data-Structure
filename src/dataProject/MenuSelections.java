@@ -35,7 +35,7 @@ public class MenuSelections {
             	   TextBasedGUI.mainMenuScreen();
                    break;
                default:
-            	   System.out.println("Seleccion no valida!");
+            	   System.out.println("\n" + "Seleccion no valida!");
             	   TextBasedGUI.isInputValid = false;
                    break;
            }
@@ -69,7 +69,7 @@ public class MenuSelections {
 		
 		//Verificación de Selección de Asientos Field
 	    while (!TextBasedGUI.isLevelInputValid) {
-	       System.out.println("Selecciona una opcion (1-" + arrSeats.size() + ") o 'Enter' para volver al menu principal: ");
+	       System.out.println("\n" + "Selecciona una opcion (1-" + arrSeats.size() + ") o 'Enter' para volver al menu principal: ");
 	       TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine();
 	       
 	       if (TextBasedGUI.menuSelection.equals("")) {
@@ -83,22 +83,17 @@ public class MenuSelections {
 	                if (menuSelectionInt >= 1 && menuSelectionInt <= arrSeats.size()) {
 	                    Seats currentSeat = arrSeats.get(menuSelectionInt - 1);
 	                    
-	                    currentSeat.setIsSeatInUse(true);
-	                    
 	                    TextBasedGUI.currentClient.reservedSeats.add(currentSeat);
 
 						Stadium.clientSeatReserved.put(currentSeat, TextBasedGUI.currentClient);
-
-	                    TextBasedGUI.currentClient.setClientPay(TextBasedGUI.currentClient.getClientPay() + currentSeat.getSeatPrice());
 
 						System.out.println("\n" + "========================================");
 						System.out.println("      ASIENTO RESERVADO CON EXITO!");
 						System.out.println("========================================" + "\n");
 
-						System.out.println("Asiento reservado: #" + currentSeat.getSeatNumber());
+						System.out.println("Asiento reservado: #" + currentSeat.getSeatNumber() + ", Fila: #" + currentSeat.getSeatRow());
 						System.out.println("Seccion del asiento: " + currentSeat.getSeatLevel());
 						System.out.println("Precio del asiento: $" + currentSeat.getSeatPrice());
-						System.out.println("Pago total actual: $" + TextBasedGUI.currentClient.getClientPay());
 
 						System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
 		
@@ -107,10 +102,10 @@ public class MenuSelections {
 	                    TextBasedGUI.isLevelInputValid = true;
 	                    
 	                } else {
-	                	System.out.println("Seleccion no valida!");
+	                	System.out.println("\n" + "Seleccion no valida!");
 	                  }        
 	            } catch (NumberFormatException error) {
-	            	System.out.println("Seleccion no valida!");
+	            	System.out.println("\n" + "Seleccion no valida!");
 	              }
 	        }
 	    }
@@ -119,7 +114,7 @@ public class MenuSelections {
 	    
 	    TextBasedGUI.mainMenuScreen();
 	}
-	public static void viewReservationsAndPay() {
+	public static void viewReservations() {
 		
 		System.out.println("\n" + "========================================");
 		System.out.println("       RESERVACIONES DEL CLIENTE");
@@ -127,57 +122,22 @@ public class MenuSelections {
 		
 		if (TextBasedGUI.currentClient.reservedSeats.isEmpty()) {
 			System.out.println("No hay reservaciones actuales.");
+
 		} else {
 			System.out.println("Reservaciones actuales: " + "\n");
 
 	        for (Seats seat : TextBasedGUI.currentClient.reservedSeats) {
-	            System.out.println("- " + seat.getSeatLevel() + ", Fila: #" + seat.getSeatRow() + ", Asiento: #" + seat.getSeatNumber() + ", Precio: $" + seat.getSeatPrice());
-	        }
-
-	        System.out.println("\n" + "Total a pagar: $" + TextBasedGUI.currentClient.getClientPay());
+				System.out.println("- " + seat.getSeatLevel() + ", Fila: #" + seat.getSeatRow() + ", Asiento: #" + seat.getSeatNumber());
+			}
 
 			TextBasedGUI.isInputValid = false;
 
-			while (!TextBasedGUI.isInputValid) {
-				System.out.println("\n" + "Desea realizar el pago? (Si/No): ");
-				TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine();
-				
-				switch (TextBasedGUI.menuSelection.toLowerCase()) {
-					case ("si"):
-						System.out.println("\n" + "Procesando pago...");
-						System.out.println("Pago realizado con exito. Gracias por su compra!");
-
-						//TODO Procesar pago
-
-						TextBasedGUI.isInputValid = true;
-						break;
-					case "s":
-						System.out.println("\n" + "Procesando pago...");
-						System.out.println("Pago realizado con exito. Gracias por su compra!");
-
-						//TODO Procesar pago
-
-						TextBasedGUI.isInputValid = true;
-						break;
-					case "no":
-						System.out.println("\n" + "No se ha realizado el pago.");
-						TextBasedGUI.isInputValid = true;
-						break;
-					case "n":
-						System.out.println("\n" + "No se ha realizado el pago.");
-						TextBasedGUI.isInputValid = true;
-						break;
-					default:
-						break;
-				}
-
-				if (!TextBasedGUI.isInputValid) {
-					System.out.println("Seleccion no valida!");
-				}
-			}
-
 	    }
 		
+		System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+	    
+	    TextBasedGUI.inputScanner.nextLine();
+
 		TextBasedGUI.mainMenuScreen();
 	}
 	public static void clientData() {

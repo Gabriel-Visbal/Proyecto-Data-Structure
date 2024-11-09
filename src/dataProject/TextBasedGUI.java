@@ -38,7 +38,7 @@ public class TextBasedGUI {
             }
 
             if (!isInputValid) {
-            	System.out.println("Nombre invalido. Asegurese de que contenga solo numeros.");
+            	System.out.println("Nombre invalido. Asegurese de que contenga solo letras.");
             }
         }
         
@@ -91,7 +91,7 @@ public class TextBasedGUI {
         currentClient = new Clients(clientName, clientEmail, clientPhoneNumber);
 		
 		System.out.println("\n" + "========================================");
-		System.out.println("BIENVENIDO, " + currentClient.getClientName());
+		System.out.println("       BIENVENIDO, " + currentClient.getClientName().toUpperCase());
 		System.out.println("========================================");
 		
         mainMenuScreen();
@@ -104,8 +104,7 @@ public class TextBasedGUI {
 		System.out.println("========================================" + "\n");
 		
 		System.out.println("1. Ver Disponibilidad del Estadio");
-		System.out.println("2. Ver Reservaciones y Realizar Pago");
-	//	System.out.println("3. Realizar Pago");
+		System.out.println("2. Ver Reservaciones");
 		System.out.println("3. Cancelar Reservaciones");
 		System.out.println("4. Ver Lista de Espera");
 		System.out.println("5. Ver Datos del Cliente");
@@ -125,7 +124,7 @@ public class TextBasedGUI {
 					MenuSelections.stadiumAvailability();;
 					break;
 				case "2":
-					MenuSelections.viewReservationsAndPay();
+					MenuSelections.viewReservations();
 					return;
 				case "3":
 					System.out.println("3!");
