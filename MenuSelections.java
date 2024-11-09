@@ -65,28 +65,32 @@ public class MenuSelections {
 		//Verificación de Selección de Asientos Field
 	    while (!TextBasedGUI.isLevelInputValid) {
 	       System.out.println("Selecciona una opción (1-" + arrSeats.size() + ") o 'Enter' para volver al menú principal: ");
-	       //TODO agregar lo de que si presiona Enter le de para atras (Enter = ""),
-	       //a lo mejor convirtiendo el input primero de un string a un int con un try catch
-	       if (TextBasedGUI.inputScanner.hasNextInt()) {
-	            TextBasedGUI.menuSelectionInt = TextBasedGUI.inputScanner.nextInt();
-
-	            if (TextBasedGUI.menuSelectionInt >= 1 && TextBasedGUI.menuSelectionInt <= arrSeats.size()) {
-	            	Seats currentSeat = arrSeats.get(TextBasedGUI.menuSelectionInt - 1);
-	            	currentSeat.setIsSeatInUse(true);
-	                TextBasedGUI.currentClient.reservedSeats.add(currentSeat);
+	       TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine();
+	       
+	       if (TextBasedGUI.menuSelection.equals("")) {
+	            TextBasedGUI.mainMenuScreen();
+	            return;
+	       } else {
+	    	   
+	            try {
+	                int menuSelectionInt = Integer.parseInt(TextBasedGUI.menuSelection);
 	                
-	                TextBasedGUI.currentClient.setClientPay(TextBasedGUI.currentClient.getClientPay() + currentSeat.getSeatPrice());
-	                
-	                TextBasedGUI.isLevelInputValid = true;
-	            }
-	            
+	                if (menuSelectionInt >= 1 && menuSelectionInt <= arrSeats.size()) {
+	                    Seats currentSeat = arrSeats.get(menuSelectionInt - 1);
+	                    
+	                    currentSeat.setIsSeatInUse(true);
+	                    
+	                    TextBasedGUI.currentClient.reservedSeats.add(currentSeat);
+	                    TextBasedGUI.currentClient.setClientPay(TextBasedGUI.currentClient.getClientPay() + currentSeat.getSeatPrice());
+	                    TextBasedGUI.isLevelInputValid = true;
+	                    
+	                } else {
+	                	System.out.println("Selección no válida!");
+	                  }        
+	            } catch (NumberFormatException error) {
+	            	System.out.println("Selección no válida!");
+	              }
 	        }
-	        
-	        if (!TextBasedGUI.isLevelInputValid) {
-	        	System.out.println("Selección no válida!");
-	        }
-	        
-            TextBasedGUI.inputScanner.nextLine();
 	    }
 	    TextBasedGUI.isLevelInputValid = false;
 	    

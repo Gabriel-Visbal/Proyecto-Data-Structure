@@ -10,7 +10,6 @@ public class TextBasedGUI {
 	public static Clients currentClient;
 	
 	public static String menuSelection = "";
-	public static int menuSelectionInt;
 	
 	public static void loginScreen() {
 		
