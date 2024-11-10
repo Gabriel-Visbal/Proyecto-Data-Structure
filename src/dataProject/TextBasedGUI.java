@@ -10,6 +10,7 @@ public class TextBasedGUI {
 	public static boolean isReserveInputValid = false;
 	
 	public static Clients currentClient;
+	public static ClientActions currentAction;
 	
 	public static String menuSelection = "";
 	
@@ -138,7 +139,7 @@ public class TextBasedGUI {
 					MenuSelections.clientData();
 					return;
 				case "6":
-					System.out.println("6!");//TODO
+					MenuSelections.undoLastAction();
 					return;
 				case "7":
 					loginScreen();

@@ -67,7 +67,7 @@ public class MenuSelections {
 		
 		TextBasedGUI.isLevelInputValid = false;
 		
-		//Verificación de Selección de Asientos Field
+		//Verificación de Seleccion de Asientos
 	    while (!TextBasedGUI.isLevelInputValid) {
 	       System.out.println("\n" + "Selecciona una opcion (1-" + arrSeats.size() + ") o 'Enter' para volver al menu principal: ");
 	       TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine();
@@ -103,9 +103,13 @@ public class MenuSelections {
 
 									TextBasedGUI.currentClient.reservedSeats.add(currentSeat);
 									Stadium.clientSeatReserved.put(currentSeat, TextBasedGUI.currentClient);
-			
+
+									TextBasedGUI.currentAction = new ClientActions(TextBasedGUI.currentClient, currentSeat, "Reserve");
+
+									ClientActions.actionHistory.push(TextBasedGUI.currentAction);
+
 									TextBasedGUI.isReserveInputValid = true;
-									
+							
 									System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
 	    
 									TextBasedGUI.inputScanner.nextLine();
@@ -117,6 +121,10 @@ public class MenuSelections {
 
 									TextBasedGUI.currentClient.reservedSeats.add(currentSeat);
 									Stadium.clientSeatReserved.put(currentSeat, TextBasedGUI.currentClient);
+
+									TextBasedGUI.currentAction = new ClientActions(TextBasedGUI.currentClient, currentSeat, "Reserve");
+
+									ClientActions.actionHistory.push(TextBasedGUI.currentAction);
 
 									TextBasedGUI.isReserveInputValid = true;
 									System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
@@ -236,6 +244,10 @@ public class MenuSelections {
 									case "si":
 										System.out.println("\n" + "Reserva cancelada exitosamente!");
 	
+										TextBasedGUI.currentAction = new ClientActions(TextBasedGUI.currentClient, currentSeat, "Cancel");
+
+										ClientActions.actionHistory.push(TextBasedGUI.currentAction);
+
 										TextBasedGUI.currentClient.reservedSeats.remove(currentSeat);
 										Stadium.clientSeatReserved.remove(currentSeat);
 				
@@ -249,7 +261,11 @@ public class MenuSelections {
 										break;
 									case "s":
 										System.out.println("\n" + "Reserva cancelada exitosamente!");
-	
+
+										TextBasedGUI.currentAction = new ClientActions(TextBasedGUI.currentClient, currentSeat, "Cancel");
+
+										ClientActions.actionHistory.push(TextBasedGUI.currentAction);
+
 										TextBasedGUI.currentClient.reservedSeats.remove(currentSeat);
 										Stadium.clientSeatReserved.remove(currentSeat);
 	
@@ -315,6 +331,38 @@ public class MenuSelections {
 	    
 	    TextBasedGUI.inputScanner.nextLine();
 	    
+		TextBasedGUI.mainMenuScreen();
+	}
+
+	public static void undoLastAction() {
+
+		if (ClientActions.actionHistory.isEmpty()) {
+			System.out.println("\n" + "No hay acciones para deshacer.");
+		} else {		
+			
+			ClientActions lastAction = ClientActions.actionHistory.pop();
+        
+			switch (lastAction.getActionType()) {
+				case "Reserve":
+					lastAction.getClient().reservedSeats.remove(lastAction.getSeat());
+					Stadium.clientSeatReserved.remove(lastAction.getSeat());
+					break;
+					
+				case "Cancel":
+					lastAction.getClient().reservedSeats.add(lastAction.getSeat());
+					Stadium.clientSeatReserved.put(lastAction.getSeat(), lastAction.getClient());
+					break;
+				default:
+					System.out.println("Si esto se printea, hay un error en algun sitio");
+			}
+
+			System.out.println("\n" + "Se ha deshecho la ultima accion!");
+		}
+
+		System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+	    
+	    TextBasedGUI.inputScanner.nextLine();
+
 		TextBasedGUI.mainMenuScreen();
 	}
 	
