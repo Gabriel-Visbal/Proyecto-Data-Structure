@@ -7,6 +7,7 @@ public class TextBasedGUI {
 
 	public static boolean isInputValid = false;
 	public static boolean isLevelInputValid = false;
+	public static boolean isReserveInputValid = false;
 	
 	public static Clients currentClient;
 	
@@ -127,8 +128,8 @@ public class TextBasedGUI {
 					MenuSelections.viewReservations();
 					return;
 				case "3":
-					System.out.println("3!");
-					break;
+					MenuSelections.cancelReservations();
+					return;
 				case "4":
 					System.out.println("4!");
 					break;

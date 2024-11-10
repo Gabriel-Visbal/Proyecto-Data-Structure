@@ -83,23 +83,75 @@ public class MenuSelections {
 	                if (menuSelectionInt >= 1 && menuSelectionInt <= arrSeats.size()) {
 	                    Seats currentSeat = arrSeats.get(menuSelectionInt - 1);
 	                    
-	                    TextBasedGUI.currentClient.reservedSeats.add(currentSeat);
-
-						Stadium.clientSeatReserved.put(currentSeat, TextBasedGUI.currentClient);
-
 						System.out.println("\n" + "========================================");
-						System.out.println("      ASIENTO RESERVADO CON EXITO!");
+						System.out.println("      RESERVA DE ASIENTOS");
 						System.out.println("========================================" + "\n");
 
-						System.out.println("Asiento reservado: #" + currentSeat.getSeatNumber() + ", Fila: #" + currentSeat.getSeatRow());
+						System.out.println("Asiento: #" + currentSeat.getSeatNumber() + ", Fila: #" + currentSeat.getSeatRow());
 						System.out.println("Seccion del asiento: " + currentSeat.getSeatLevel());
 						System.out.println("Precio del asiento: $" + currentSeat.getSeatPrice());
 
-						System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
-		
-						TextBasedGUI.inputScanner.nextLine();
+						TextBasedGUI.isReserveInputValid = false;
 
-	                    TextBasedGUI.isLevelInputValid = true;
+						while (!TextBasedGUI.isReserveInputValid) {
+							System.out.println("\n" + "Desea confirmar la reserva? (Si/No): ");
+				
+							TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine();
+							switch (TextBasedGUI.menuSelection.toLowerCase()) {
+								case "si":
+									System.out.println("\n" + "Reserva confirmada exitosamente!");
+
+									TextBasedGUI.currentClient.reservedSeats.add(currentSeat);
+									Stadium.clientSeatReserved.put(currentSeat, TextBasedGUI.currentClient);
+			
+									TextBasedGUI.isReserveInputValid = true;
+									
+									System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+	    
+									TextBasedGUI.inputScanner.nextLine();
+							
+									TextBasedGUI.mainMenuScreen();
+									break;
+								case "s":
+									System.out.println("\n" + "Reserva confirmada exitosamente!");
+
+									TextBasedGUI.currentClient.reservedSeats.add(currentSeat);
+									Stadium.clientSeatReserved.put(currentSeat, TextBasedGUI.currentClient);
+
+									TextBasedGUI.isReserveInputValid = true;
+									System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+	    
+									TextBasedGUI.inputScanner.nextLine();
+							
+									TextBasedGUI.mainMenuScreen();
+									break;
+								case "no":
+									System.out.println("\n" + "Reserva no confirmada!");
+
+									TextBasedGUI.isReserveInputValid = true;
+									System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+	    
+									TextBasedGUI.inputScanner.nextLine();
+							
+									TextBasedGUI.mainMenuScreen();
+									break;
+								case "n":
+									System.out.println("\n" + "Reserva cancelada!");
+
+									TextBasedGUI.isReserveInputValid = true;
+									System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+	    
+									TextBasedGUI.inputScanner.nextLine();
+							
+									TextBasedGUI.mainMenuScreen();
+									break;
+								default:
+									System.out.println("\n" + "Seleccion no valida!");
+									break;
+							}
+						}
+
+	                    TextBasedGUI.isLevelInputValid = false;
 	                    
 	                } else {
 	                	System.out.println("\n" + "Seleccion no valida!");
@@ -140,6 +192,118 @@ public class MenuSelections {
 
 		TextBasedGUI.mainMenuScreen();
 	}
+
+	public static void cancelReservations() {
+
+		System.out.println("\n" + "========================================");
+		System.out.println("       CANCELAR RESERVACIONES");
+		System.out.println("========================================" + "\n");
+
+		if (TextBasedGUI.currentClient.reservedSeats.isEmpty()) {
+			System.out.println("No hay reservaciones actuales.");
+
+		} else {
+			System.out.println("Reservaciones actuales: " + "\n");
+
+			for (int i = 0; i < TextBasedGUI.currentClient.reservedSeats.size(); i++) {
+				System.out.println((i + 1) + ". " + (TextBasedGUI.currentClient.reservedSeats.get(i)));
+			}
+			TextBasedGUI.isLevelInputValid = false;
+		
+			//Verificación de Cancelacion de Asientos
+			while (!TextBasedGUI.isLevelInputValid) {
+			   System.out.println("\n" + "Selecciona una opcion (1-" + TextBasedGUI.currentClient.reservedSeats.size() + ") para cancelar o 'Enter' para volver al menu principal: ");
+			   TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine();
+			   
+			   if (TextBasedGUI.menuSelection.equals("")) {
+					TextBasedGUI.mainMenuScreen();
+					return;
+			   } else {
+				   
+					try {
+						int menuSelectionInt = Integer.parseInt(TextBasedGUI.menuSelection);
+						
+						if (menuSelectionInt >= 1 && menuSelectionInt <= TextBasedGUI.currentClient.reservedSeats.size()) {
+							Seats currentSeat = TextBasedGUI.currentClient.reservedSeats.get(menuSelectionInt - 1);
+
+							TextBasedGUI.isReserveInputValid = false;
+	
+							while (!TextBasedGUI.isReserveInputValid) {
+								System.out.println("\n" + "Desea cancelar la reserva? (Si/No): ");
+					
+								TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine();
+								switch (TextBasedGUI.menuSelection.toLowerCase()) {
+									case "si":
+										System.out.println("\n" + "Reserva cancelada exitosamente!");
+	
+										TextBasedGUI.currentClient.reservedSeats.remove(currentSeat);
+										Stadium.clientSeatReserved.remove(currentSeat);
+				
+										TextBasedGUI.isReserveInputValid = true;
+										
+										System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+			
+										TextBasedGUI.inputScanner.nextLine();
+								
+										TextBasedGUI.mainMenuScreen();
+										break;
+									case "s":
+										System.out.println("\n" + "Reserva cancelada exitosamente!");
+	
+										TextBasedGUI.currentClient.reservedSeats.remove(currentSeat);
+										Stadium.clientSeatReserved.remove(currentSeat);
+	
+										TextBasedGUI.isReserveInputValid = true;
+										System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+			
+										TextBasedGUI.inputScanner.nextLine();
+								
+										TextBasedGUI.mainMenuScreen();
+										break;
+									case "no":
+										System.out.println("\n" + "Cancelacion de reserva no confirmada!");
+	
+										TextBasedGUI.isReserveInputValid = true;
+										System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+			
+										TextBasedGUI.inputScanner.nextLine();
+								
+										TextBasedGUI.mainMenuScreen();
+										break;
+									case "n":
+										System.out.println("\n" + "Cancelacion de reserva no confirmada!");
+	
+										TextBasedGUI.isReserveInputValid = true;
+										System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+			
+										TextBasedGUI.inputScanner.nextLine();
+								
+										TextBasedGUI.mainMenuScreen();
+										break;
+									default:
+										System.out.println("\n" + "Seleccion no valida!");
+										break;
+								}
+							}
+	
+							TextBasedGUI.isLevelInputValid = false;
+							
+						} else {
+							System.out.println("\n" + "Seleccion no valida!");
+						  }        
+					} catch (NumberFormatException error) {
+						System.out.println("\n" + "Seleccion no valida!");
+					  }
+				}
+			}
+		}
+		System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+	    
+	    TextBasedGUI.inputScanner.nextLine();
+
+		TextBasedGUI.mainMenuScreen();
+	}
+
 	public static void clientData() {
 		System.out.println("\n" + "========================================");
 		System.out.println("           DATOS DEL CLIENTE");
