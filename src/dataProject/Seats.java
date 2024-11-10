@@ -3,7 +3,10 @@ package dataProject;
 import java.util.ArrayList;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
+
+import java.util.Queue;
 
 public class Seats {
 	public String seatLevel;
@@ -16,7 +19,11 @@ public class Seats {
 	public static ArrayList<Seats> fieldSeats = new ArrayList<Seats>();
 	public static ArrayList<Seats> mainSeats = new ArrayList<Seats>();
 	public static ArrayList<Seats> grandstandSeats = new ArrayList<Seats>();
-	
+
+	public static Queue<Clients> fieldWaitingList = new LinkedList<Clients>();
+	public static Queue<Clients> mainWaitingList = new LinkedList<Clients>();
+	public static Queue<Clients> grandstandWaitingList = new LinkedList<Clients>();
+
 	Seats(String seatLevel, int seatRow, int seatNumber) {
 		this.seatLevel = seatLevel;
 		this.seatRow = seatRow;
@@ -117,5 +124,14 @@ public class Seats {
             }
         }
 	}
-	
+
+	public static boolean areAllSeatsReserved(ArrayList<Seats> arrSeats) {
+		for (Seats seat : arrSeats) {
+			if (!Stadium.clientSeatReserved.containsKey(seat)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 }

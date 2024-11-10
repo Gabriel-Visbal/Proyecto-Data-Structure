@@ -1,6 +1,9 @@
 package dataProject;
 
 import java.util.Scanner;
+
+import java.util.HashSet;
+import java.util.Set;
 public class TextBasedGUI {
 	
 	public static Scanner inputScanner = new Scanner(System.in);
@@ -12,6 +15,8 @@ public class TextBasedGUI {
 	public static Clients currentClient;
 	public static ClientActions currentAction;
 	
+	public static Set<Clients> allClientsSet = new HashSet<Clients>();
+
 	public static String menuSelection = "";
 	
 	public static void loginScreen() {
@@ -89,9 +94,20 @@ public class TextBasedGUI {
         }
         
         isInputValid = false;
-        
+
         currentClient = new Clients(clientName, clientEmail, clientPhoneNumber);
 		
+		if (allClientsSet.contains(currentClient)) {
+			for (Clients client : allClientsSet) {
+				if (currentClient.equals(client)) {
+					currentClient = client;
+					break;
+				}
+			}
+		} else {
+			allClientsSet.add(currentClient);
+		}
+
 		System.out.println("\n" + "========================================");
 		System.out.println("       BIENVENIDO, " + currentClient.getClientName().toUpperCase());
 		System.out.println("========================================");
@@ -133,7 +149,7 @@ public class TextBasedGUI {
 					MenuSelections.cancelReservations();
 					return;
 				case "4":
-					System.out.println("4!");//TODO
+					MenuSelections.viewWaitingList(); //TODO
 					break;
 				case "5":
 					MenuSelections.clientData();
