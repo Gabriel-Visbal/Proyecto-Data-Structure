@@ -2,9 +2,10 @@ package dataProject;
 
 import java.util.ArrayList;
 
-import java.util.HashSet;
 import java.util.LinkedList;
+
 import java.util.Set;
+import java.util.HashSet;
 
 import java.util.Queue;
 
@@ -87,8 +88,8 @@ public class Seats {
 	}
 	
 	public static void initializeFieldSeats() {
-        int totalRows = 4;
-        int seatsPerRow = 5;
+        int totalRows = 2; //Esto es para testear
+        int seatsPerRow = 1; // Originalmente era 4 rows y 5 seats por fila
 
         for (int row = 1; row <= totalRows; row++) {
             for (int seat = 1; seat <= seatsPerRow; seat++) {

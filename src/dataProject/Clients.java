@@ -44,7 +44,15 @@ public class Clients {
 		System.out.println("Correo Electronico: " + this.clientEmail);
 		System.out.println("Numero de Telefono: " + this.clientPhoneNumber);
 	}
-	
+
+	public boolean isSameClient(Clients otherClient) {
+		if (this == otherClient) {
+			return true;
+		}
+
+		return this.clientName.equals(otherClient.clientName) && this.clientEmail.equals(otherClient.clientEmail) && this.clientPhoneNumber.equals(otherClient.clientPhoneNumber);
+	}
+
 	@Override
 	public String toString() {
 		return this.clientName;

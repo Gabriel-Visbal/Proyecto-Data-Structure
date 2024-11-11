@@ -1,6 +1,7 @@
 package dataProject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 public class MenuSelections {
 	
 	public static void stadiumAvailability() {
@@ -67,8 +68,8 @@ public class MenuSelections {
 		
 		if (Seats.areAllSeatsReserved(arrSeats)) {
 
-			System.out.println("Todos los asientos en esta seccion estan reservados.");
-			System.out.println("Agregando a " + TextBasedGUI.currentClient.getClientName() + " a la lista de espera de " + seatLevel + "...");
+			System.out.println("\n" + "Todos los asientos en esta seccion estan reservados.");
+			System.out.println("\n" + "Agregando a " + TextBasedGUI.currentClient.getClientName() + " a la lista de espera de Asientos " + seatLevel + "...");
 			
 			switch (seatLevel) {
 				case "Field":
@@ -249,7 +250,33 @@ public class MenuSelections {
 
 									TextBasedGUI.currentClient.reservedSeats.remove(currentSeat);
 									Stadium.clientSeatReserved.remove(currentSeat);
-			
+
+									switch (currentSeat.getSeatLevel()) {
+										case "Field":
+											if (!Seats.fieldWaitingList.isEmpty()) {
+												Clients nextClient = Seats.fieldWaitingList.poll();
+												nextClient.reservedSeats.add(currentSeat);
+												Stadium.clientSeatReserved.put(currentSeat, nextClient);
+											}
+											break;
+										case "Main":
+											if (!Seats.mainWaitingList.isEmpty()) {
+												Clients nextClient = Seats.mainWaitingList.poll();
+												nextClient.reservedSeats.add(currentSeat);
+												Stadium.clientSeatReserved.put(currentSeat, nextClient);
+											}
+											break;
+										case "Grandstand":
+											if (!Seats.grandstandWaitingList.isEmpty()) {
+												Clients nextClient = Seats.grandstandWaitingList.poll();
+												nextClient.reservedSeats.add(currentSeat);
+												Stadium.clientSeatReserved.put(currentSeat, nextClient);
+											}
+											break;
+										default:
+											break;
+									}
+
 									TextBasedGUI.isReserveInputValid = true;
 									
 									System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
@@ -291,7 +318,46 @@ public class MenuSelections {
 	}
 
 	public static void viewWaitingList() {
-		//TODO
+		System.out.println("\n" + "========================================");
+		System.out.println("      LISTA DE ESPERA");
+		System.out.println("========================================" + "\n");
+		
+		Iterator<Clients> fieldIterator = Seats.fieldWaitingList.iterator();
+
+		Iterator<Clients> mainIterator = Seats.mainWaitingList.iterator();
+
+		Iterator<Clients> grandstandIterator = Seats.grandstandWaitingList.iterator();
+
+		queuePositions(fieldIterator, "Field");
+		queuePositions(mainIterator, "Main");
+		queuePositions(grandstandIterator, "Grandstand");
+
+		System.out.println("Presione cualquier tecla para volver al menu principal...");
+	    
+	    TextBasedGUI.inputScanner.nextLine();
+
+		TextBasedGUI.mainMenuScreen();
+	}
+
+	public static void queuePositions(Iterator<Clients> iterator, String seatlevel) {
+
+		int queuePosition = 1;
+		ArrayList<Integer> queuePositionList = new ArrayList<Integer>();
+
+		while (iterator.hasNext()) {
+			Clients client = iterator.next();
+			if (client.equals(TextBasedGUI.currentClient)) {
+				queuePositionList.add(queuePosition);
+			}
+
+			queuePosition++;
+		}
+	
+		if (queuePositionList.isEmpty()) {
+			System.out.println("Usted no se encuentra en la lista de espera de " + seatlevel + "!" + "\n");
+		} else {
+			System.out.println("Usted se encuentra en las posiciones " + queuePositionList + " de la lista de espera de " + seatlevel + "\n");
+		}
 	}
 
 	public static void clientData() {
