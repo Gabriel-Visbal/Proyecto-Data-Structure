@@ -111,6 +111,16 @@ public class MenuSelections {
 	                
 	                if (menuSelectionInt >= 1 && menuSelectionInt <= arrSeats.size()) {
 	                    Seats currentSeat = arrSeats.get(menuSelectionInt - 1);
+
+						if (Stadium.clientSeatReserved.containsKey(currentSeat)) {
+							System.out.println("\n" + "Asiento ya reservado por: " + Stadium.clientSeatReserved.get(currentSeat).getClientName() + "!");
+
+							System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+	
+							TextBasedGUI.inputScanner.nextLine();
+					
+							TextBasedGUI.mainMenuScreen();
+						}
 	                    
 						System.out.println("\n" + "========================================");
 						System.out.println("      RESERVA DE ASIENTOS");
@@ -410,7 +420,15 @@ public class MenuSelections {
 		System.out.println("\n" + "========================================");
 		System.out.println("      GRACIAS POR USAR EL PROGRAMA!");
 		System.out.println("========================================" + "\n");
-		
+
 		Stadium.programRunning = false;
+
+		TextBasedGUI.isInputValid = true;
+		TextBasedGUI.isLevelInputValid = true;
+		TextBasedGUI.isReserveInputValid = true;
+
+		TextBasedGUI.inputScanner.close();
+
+		System.exit(0);
 	}
 }

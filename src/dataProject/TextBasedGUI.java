@@ -144,7 +144,7 @@ public class TextBasedGUI {
 			switch (menuSelection) {
 				case "1":
 					MenuSelections.stadiumAvailability();;
-					break;
+					return;
 				case "2":
 					MenuSelections.viewReservations();
 					return;
@@ -153,7 +153,7 @@ public class TextBasedGUI {
 					return;
 				case "4":
 					MenuSelections.viewWaitingList();
-					break;
+					return;
 				case "5":
 					MenuSelections.clientData();
 					return;
