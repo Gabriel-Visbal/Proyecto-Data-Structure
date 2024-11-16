@@ -12,9 +12,10 @@ public class TextBasedGUI {
 	public static boolean isLevelInputValid = false;
 	public static boolean isReserveInputValid = false;
 	
-	public static Clients currentClient;
+	public static Clients currentClient; //Cliente actual que está usando el programa
 	public static ClientActions currentAction;
 	
+	//Lista que contiene todos los clientes que han usado el programa
 	public static ArrayList<Clients> allClientsList = new ArrayList<Clients>();
 
 	public static String menuSelection = "";
@@ -31,15 +32,15 @@ public class TextBasedGUI {
 		
 		isInputValid = false;
 		
-        //Verificación de Nombre
+        //Verifica que el nombre tenga solo letras o espacios, sigue preguntando hasta que eso se cumpla
         while (!isInputValid) {
             System.out.print("Nombre del Cliente: ");
             clientName = inputScanner.nextLine();
 
             isInputValid = true;
             for (int i = 0; i < clientName.length(); i++) {
-                if (!Character.isLetter(clientName.charAt(i)) && clientName.charAt(i) != ' ') {
-                	isInputValid = false;
+                if (!Character.isLetter(clientName.charAt(i)) && clientName.charAt(i) != ' ') { //Aqui verifica si no es o una letra y no 
+                	isInputValid = false;														//es un espacio entonces sabemos que tenemos que preguntar de nuevo
                     break;
                 }
             }
@@ -51,14 +52,14 @@ public class TextBasedGUI {
         
         isInputValid = false;
         
-        //Verificación de Email
+        //Verifica que el email tenga por lo menos un @ en alguna parte, sigue preguntando hasta que eso se cumpla
         while (!isInputValid) {
             System.out.print("Email del Cliente: ");
             clientEmail = inputScanner.nextLine();
 
             isInputValid = false;
             for (int i = 0; i < clientEmail.length(); i++) {
-                if (clientEmail.charAt(i) == '@') {
+                if (clientEmail.charAt(i) == '@') { //Si encontró el @ entonces esta bien
                 	isInputValid = true;
                     break;
                 }
@@ -71,12 +72,12 @@ public class TextBasedGUI {
         
         isInputValid = false;
         
-        //Verificación de Número de Teléfono
+        //Verifica que el numero de telefono tenga solo numeros, sigue preguntando hasta que eso se cumpla
         while (!isInputValid) {
             System.out.print("Numero de Telefono del Cliente: ");
             clientPhoneNumber = inputScanner.nextLine();
             
-            if (clientPhoneNumber.contains("-")) {
+            if (clientPhoneNumber.contains("-")) { //Si el numero de telefono tiene guiones, los reemplaza por un espacio vacio, osea los elimina
                 clientPhoneNumber = clientPhoneNumber.replace("-", "");
             }
             
@@ -95,18 +96,21 @@ public class TextBasedGUI {
         
         isInputValid = false;
 
+		//Hace un nuevo objeto cliente con los datos anteriormente recogidos
         currentClient = new Clients(clientName, clientEmail, clientPhoneNumber);
 
         boolean clientExists = false;
 
+		//Recorre la lista de todos los clientes que han usado el programa
         for (Clients client : allClientsList) {
-            if (currentClient.isSameClient(client)) {
-                currentClient = client;
+            if (currentClient.isSameClient(client)) { //Si encuentra que este cliente ya habia usado el programa, se queda con el cliente que ya habia anteriormente
+                currentClient = client; 			  //esto para que si entras con el mismo cliente, tenga todas las reservas y el historial de ese cliente 
                 clientExists = true;
                 break;
             }
         }
 
+		//Si es un cliente nuevo, añadelo a la lista de clientes
         if (!clientExists) {
             allClientsList.add(currentClient);
         }
@@ -115,6 +119,7 @@ public class TextBasedGUI {
 		System.out.println("       BIENVENIDO, " + currentClient.getClientName().toUpperCase());
 		System.out.println("========================================");
 		
+		//Pasa a la pantalla principal para que el cliente seleccione que quiere hacer
         mainMenuScreen();
 	}
 	
@@ -136,7 +141,7 @@ public class TextBasedGUI {
 		
 		isInputValid = false;
 		
-		//Verificación de Selección de Menu Principal
+		//Verifica que lo que elegio el cliente es una opcion valida, sigue preguntando hasta que eso se cumpla
 	    while (!isInputValid) {
 			System.out.println("Selecciona una opcion (1-9): ");
 			menuSelection = inputScanner.nextLine().trim();
@@ -144,35 +149,35 @@ public class TextBasedGUI {
 			isInputValid = true;
 			switch (menuSelection) {
 				case "1":
-					MenuSelections.stadiumAvailability();;
+					MenuSelections.stadiumAvailability(); //Envia al cliente al apartado de ver y comprar asientos
 					return;
 				case "2":
-					MenuSelections.viewReservations();
+					MenuSelections.viewReservations(); //Envia al cliente al apartado de ver las reservaciones que tiene actualmente
 					return;
 				case "3":
-					MenuSelections.cancelReservations();
+					MenuSelections.cancelReservations(); //Envia al cliente al apartado de cancelar reservaciones que tenga actualmente
 					return;
 				case "4":
-					MenuSelections.viewWaitingList();
+					MenuSelections.viewWaitingList(); //Envia al cliente al apartado de ver en que posicion de las listas de espera se encuentra actualmente
 					return;
 				case "5":
-					MenuSelections.clientData();
+					MenuSelections.clientData(); //Envia al cliente al apartado de ver todos sus datos, nombre, email, numero de telefono
 					return;
 				case "6":
-					MenuSelections.undoLastAction();
+					MenuSelections.undoLastAction(); //Envia al cliente al apartado de deshacer su ultima accion
 					return;
 				case "7":
-					MenuSelections.viewReservationHistory();
+					MenuSelections.viewReservationHistory(); //Envia al cliente al apartado de ver todo su historial de reservas, cancelaciones, cosas que deshizo
 					return;
 				case "8":
-					loginScreen();
+					loginScreen(); //Vuelve a la pantalla de login - inicio de sesion para entrar con otro usuario
 					return;
 				case "9":
-					MenuSelections.exitProgram();
+					MenuSelections.exitProgram(); //Llama la funcion de cerrar el programa
 					return;
 				default:
 					System.out.println("Seleccion no valida!");
-					isInputValid = false;
+					isInputValid = false; //Si la seleccion no es valida, vuelve a preguntar de nuevo
 					break;
 			}
 	    }

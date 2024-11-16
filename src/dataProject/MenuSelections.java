@@ -68,23 +68,43 @@ public class MenuSelections {
 		
 		if (Seats.areAllSeatsReserved(arrSeats)) {
 
-			System.out.println("\n" + "Todos los asientos en esta seccion estan reservados.");
-			System.out.println("\n" + "Agregando a " + TextBasedGUI.currentClient.getClientName() + " a la lista de espera de Asientos " + seatLevel + "...");
+			System.out.println("\n" + "Todos los asientos en esta seccion se encuentran reservados.");
+
+			TextBasedGUI.isReserveInputValid = false;
+
+			while (!TextBasedGUI.isReserveInputValid) {
+				System.out.println("\n" + "Desea entrar a la lista de espera de Asientos " + seatLevel + "? (Si/No): ");
+	
+				TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine().trim();
+
+				if (TextBasedGUI.menuSelection.toLowerCase().equals("si") || TextBasedGUI.menuSelection.toLowerCase().equals("s")) {
+					System.out.println("\n" + "Agregando a " + TextBasedGUI.currentClient.getClientName() + " a la lista de espera de Asientos " + seatLevel + "...");
 			
-			switch (seatLevel) {
-				case "Field":
-					Seats.fieldWaitingList.add(TextBasedGUI.currentClient);
-					break;
-				case "Main":
-					Seats.mainWaitingList.add(TextBasedGUI.currentClient);
-					break;
-				case "Grandstand":
-					Seats.grandstandWaitingList.add(TextBasedGUI.currentClient);
-					break;
-				default:
-					break;
+					switch (seatLevel) {
+						case "Field":
+							Seats.fieldWaitingList.add(TextBasedGUI.currentClient);
+							break;
+						case "Main":
+							Seats.mainWaitingList.add(TextBasedGUI.currentClient);
+							break;
+						case "Grandstand":
+							Seats.grandstandWaitingList.add(TextBasedGUI.currentClient);
+							break;
+						default:
+							break;
+					}
+
+					TextBasedGUI.isReserveInputValid = true;
+
+					System.out.println("\n" + "Agregado exitosamente!");
+				} else if (TextBasedGUI.menuSelection.toLowerCase().equals("no") || TextBasedGUI.menuSelection.toLowerCase().equals("n")) {
+					System.out.println("\n" + "Ha decidido no unirse a la lista de espera para los Asientos " + seatLevel + ".");
+
+					TextBasedGUI.isReserveInputValid = true;
+				} else {
+					System.out.println("\n" + "Seleccion no valida!");
+				}
 			}
-			System.out.println("\n" + "Agregado exitosamente!");
 
 			System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
 	
@@ -92,7 +112,6 @@ public class MenuSelections {
 	
 			TextBasedGUI.mainMenuScreen();
 		}
-
 
 		TextBasedGUI.isLevelInputValid = false;
 		
@@ -156,7 +175,7 @@ public class MenuSelections {
 								TextBasedGUI.inputScanner.nextLine();
 						
 								TextBasedGUI.mainMenuScreen();
-							} else if (TextBasedGUI.menuSelection.toLowerCase().equals("no") || TextBasedGUI.menuSelection.toLowerCase().equals("o")) {
+							} else if (TextBasedGUI.menuSelection.toLowerCase().equals("no") || TextBasedGUI.menuSelection.toLowerCase().equals("n")) {
 								System.out.println("\n" + "Reserva no confirmada!");
 
 								TextBasedGUI.isReserveInputValid = true;
