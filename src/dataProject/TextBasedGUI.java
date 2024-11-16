@@ -139,7 +139,7 @@ public class TextBasedGUI {
 		//Verificación de Selección de Menu Principal
 	    while (!isInputValid) {
 			System.out.println("Selecciona una opcion (1-9): ");
-			menuSelection = inputScanner.nextLine();
+			menuSelection = inputScanner.nextLine().trim();
 			
 			isInputValid = true;
 			switch (menuSelection) {

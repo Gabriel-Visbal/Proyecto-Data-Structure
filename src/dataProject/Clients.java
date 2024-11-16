@@ -49,9 +49,9 @@ public class Clients {
 	}
 
 	public boolean isSameClient(Clients otherClient) {
-		return this.clientName.equals(otherClient.clientName) && this.clientEmail.equals(otherClient.clientEmail) && this.clientPhoneNumber.equals(otherClient.clientPhoneNumber);
+		return this.clientName.toLowerCase().equals(otherClient.clientName.toLowerCase()) && this.clientEmail.toLowerCase().equals(otherClient.clientEmail.toLowerCase()) && this.clientPhoneNumber.toLowerCase().equals(otherClient.clientPhoneNumber.toLowerCase());
 	}
-
+	
 	@Override
 	public String toString() {
 		return this.clientName;

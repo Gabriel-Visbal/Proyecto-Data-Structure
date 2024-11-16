@@ -19,7 +19,7 @@ public class MenuSelections {
 		//Verificación de Selección de Nivel de Asiento
 	    while (!TextBasedGUI.isInputValid) {
 			System.out.println("Selecciona una opcion (1-3) o 'Enter' para volver al menu principal: ");
-			TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine();
+			TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine().trim();
 			
 			TextBasedGUI.isInputValid = true;
 	           switch (TextBasedGUI.menuSelection) {
@@ -99,7 +99,7 @@ public class MenuSelections {
 		//Verificación de Seleccion de Asientos
 	    while (!TextBasedGUI.isLevelInputValid) {
 	       System.out.println("\n" + "Selecciona una opcion (1-" + arrSeats.size() + ") o 'Enter' para volver al menu principal: ");
-	       TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine();
+	       TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine().trim();
 	       
 	       if (TextBasedGUI.menuSelection.equals("")) {
 	            TextBasedGUI.mainMenuScreen();
@@ -135,7 +135,7 @@ public class MenuSelections {
 						while (!TextBasedGUI.isReserveInputValid) {
 							System.out.println("\n" + "Desea confirmar la reserva? (Si/No): ");
 				
-							TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine();
+							TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine().trim();
 
 							if (TextBasedGUI.menuSelection.toLowerCase().equals("si") || TextBasedGUI.menuSelection.toLowerCase().equals("s")) {
 								System.out.println("\n" + "Reserva confirmada exitosamente!");
@@ -143,7 +143,7 @@ public class MenuSelections {
 								TextBasedGUI.currentClient.reservedSeats.add(currentSeat);
 								Stadium.clientSeatReserved.put(currentSeat, TextBasedGUI.currentClient);
 
-								TextBasedGUI.currentClient.reservationHistory.add("Usted reservo el asiento #" + currentSeat.getSeatNumber() + ", de la Fila #" + currentSeat.getSeatRow() + ", de la Seccion: " + currentSeat.getSeatLevel());
+								TextBasedGUI.currentClient.reservationHistory.add(TextBasedGUI.currentClient.getClientName() + " reservo el asiento #" + currentSeat.getSeatNumber() + ", de la Fila #" + currentSeat.getSeatRow() + ", de la Seccion: " + currentSeat.getSeatLevel());
 
 								TextBasedGUI.currentAction = new ClientActions(TextBasedGUI.currentClient, currentSeat, "Reserve");
 
@@ -233,7 +233,7 @@ public class MenuSelections {
 			//Verificación de Cancelacion de Asientos
 			while (!TextBasedGUI.isLevelInputValid) {
 			   System.out.println("\n" + "Selecciona una opcion (1-" + TextBasedGUI.currentClient.reservedSeats.size() + ") para cancelar o 'Enter' para volver al menu principal: ");
-			   TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine();
+			   TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine().trim();
 			   
 			   if (TextBasedGUI.menuSelection.equals("")) {
 					TextBasedGUI.mainMenuScreen();
@@ -251,14 +251,14 @@ public class MenuSelections {
 							while (!TextBasedGUI.isReserveInputValid) {
 								System.out.println("\n" + "Desea cancelar la reserva? (Si/No): ");
 					
-								TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine();
+								TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine().trim();
 
 								if (TextBasedGUI.menuSelection.toLowerCase().equals("si") || TextBasedGUI.menuSelection.toLowerCase().equals("s")) {
 									System.out.println("\n" + "Reserva cancelada exitosamente!");
 	
 									TextBasedGUI.currentAction = new ClientActions(TextBasedGUI.currentClient, currentSeat, "Cancel");
 
-									TextBasedGUI.currentClient.reservationHistory.add("Usted cancelo su reserva del asiento #" + currentSeat.getSeatNumber() + ", de la Fila #" + currentSeat.getSeatRow() + ", de la Seccion: " + currentSeat.getSeatLevel());
+									TextBasedGUI.currentClient.reservationHistory.add(TextBasedGUI.currentClient.getClientName() + " cancelo su reserva del asiento #" + currentSeat.getSeatNumber() + ", de la Fila #" + currentSeat.getSeatRow() + ", de la Seccion: " + currentSeat.getSeatLevel());
 
 									ClientActions.actionHistory.push(TextBasedGUI.currentAction);
 
@@ -368,9 +368,9 @@ public class MenuSelections {
 		}
 	
 		if (queuePositionList.isEmpty()) {
-			System.out.println("Usted no se encuentra en la lista de espera de " + seatlevel + "!" + "\n");
+			System.out.println(TextBasedGUI.currentClient.getClientName() + " no se encuentra en la lista de espera de " + seatlevel + "!" + "\n");
 		} else {
-			System.out.println("Usted se encuentra en las posiciones " + queuePositionList + " de la lista de espera de " + seatlevel + "\n");
+			System.out.println(TextBasedGUI.currentClient.getClientName() + " se encuentra en las posiciones " + queuePositionList + " de la lista de espera de " + seatlevel + "\n");
 		}
 	}
 
@@ -389,9 +389,12 @@ public class MenuSelections {
 	}
 
 	public static void undoLastAction() {
+		System.out.println("\n" + "========================================");
+		System.out.println("           DESHACER ULTIMA ACCION");
+		System.out.println("========================================" + "\n");
 
 		if (ClientActions.actionHistory.isEmpty()) {
-			System.out.println("\n" + "No hay acciones para deshacer.");
+			System.out.println("No hay acciones para deshacer.");
 		} else {		
 			
 			ClientActions lastAction = ClientActions.actionHistory.pop();
@@ -400,17 +403,51 @@ public class MenuSelections {
 				case "Reserve":
 					lastAction.getClient().reservedSeats.remove(lastAction.getSeat());
 					Stadium.clientSeatReserved.remove(lastAction.getSeat());
+					TextBasedGUI.currentClient.reservationHistory.add(TextBasedGUI.currentClient.getClientName() + " deshizo su ultima accion: Reserva del asiento #" + lastAction.getSeat().getSeatNumber() + ", de la Fila #" + lastAction.getSeat().getSeatRow() + ", de la Seccion: " + lastAction.getSeat().getSeatLevel());
+					
+					System.out.println("Se ha deshecho la ultima accion!");
+
+					switch (lastAction.getSeat().getSeatLevel()) {
+						case "Field":
+							if (!Seats.fieldWaitingList.isEmpty()) {
+								Clients nextClient = Seats.fieldWaitingList.poll();
+								nextClient.reservedSeats.add(lastAction.getSeat());
+								Stadium.clientSeatReserved.put(lastAction.getSeat(), nextClient);
+							}
+							break;
+						case "Main":
+							if (!Seats.mainWaitingList.isEmpty()) {
+								Clients nextClient = Seats.mainWaitingList.poll();
+								nextClient.reservedSeats.add(lastAction.getSeat());
+								Stadium.clientSeatReserved.put(lastAction.getSeat(), nextClient);
+							}
+							break;
+						case "Grandstand":
+							if (!Seats.grandstandWaitingList.isEmpty()) {
+								Clients nextClient = Seats.grandstandWaitingList.poll();
+								nextClient.reservedSeats.add(lastAction.getSeat());
+								Stadium.clientSeatReserved.put(lastAction.getSeat(), nextClient);
+							}
+							break;
+						default:
+							break;
+					}
 					break;
 					
 				case "Cancel":
-					lastAction.getClient().reservedSeats.add(lastAction.getSeat());
-					Stadium.clientSeatReserved.put(lastAction.getSeat(), lastAction.getClient());
+					if (Stadium.clientSeatReserved.containsKey(lastAction.getSeat())) {
+						System.out.println("No se puede deshacer la cancelacion debido a que el asiento ya fue asignado al proximo cliente en la lista de espera!");
+					} else {					
+						lastAction.getClient().reservedSeats.add(lastAction.getSeat());
+						Stadium.clientSeatReserved.put(lastAction.getSeat(), lastAction.getClient());
+						TextBasedGUI.currentClient.reservationHistory.add(TextBasedGUI.currentClient.getClientName() + " deshizo su ultima accion: Cancelacion de la reserva del asiento #" + lastAction.getSeat().getSeatNumber() + ", de la Fila #" + lastAction.getSeat().getSeatRow() + ", de la Seccion: " + lastAction.getSeat().getSeatLevel());
+
+						System.out.println("Se ha deshecho la ultima accion!");
+					}
 					break;
 				default:
 					break;
 			}
-
-			System.out.println("\n" + "Se ha deshecho la ultima accion!");
 		}
 
 		System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
@@ -426,13 +463,13 @@ public class MenuSelections {
 		System.out.println("========================================" + "\n");
 
 		if (TextBasedGUI.currentClient.reservationHistory.isEmpty()) {
-			System.out.println("\n" + "Ningun historial disponible!");
+			System.out.println("Ningun historial disponible!" + "\n");
 		} else {	
-			for (int i = 0; i < TextBasedGUI.currentClient.reservationHistory.size(); i++) {
-			System.out.println("\n" + TextBasedGUI.currentClient.reservationHistory.get(i));
+			for (int i = TextBasedGUI.currentClient.reservationHistory.size() - 1; i >= 0; i--) {
+				System.out.println("-" + TextBasedGUI.currentClient.reservationHistory.get(i) + "\n");
 			}
 		}
-		System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+		System.out.println("Presione cualquier tecla para volver al menu principal...");
 	    
 	    TextBasedGUI.inputScanner.nextLine();
 
