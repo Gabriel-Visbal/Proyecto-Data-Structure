@@ -130,14 +130,15 @@ public class TextBasedGUI {
 		System.out.println("4. Ver Lista de Espera");
 		System.out.println("5. Ver Datos del Cliente");
 		System.out.println("6. Deshacer Ultima Accion");
-		System.out.println("7. Cerrar Sesion");
-		System.out.println("8. Salir del Sistema" + "\n");
+		System.out.println("7. Ver Historial de Reservaciones");
+		System.out.println("8. Cerrar Sesion");
+		System.out.println("9. Salir del Sistema" + "\n");
 		
 		isInputValid = false;
 		
 		//Verificación de Selección de Menu Principal
 	    while (!isInputValid) {
-			System.out.println("Selecciona una opcion (1-8): ");
+			System.out.println("Selecciona una opcion (1-9): ");
 			menuSelection = inputScanner.nextLine();
 			
 			isInputValid = true;
@@ -161,9 +162,12 @@ public class TextBasedGUI {
 					MenuSelections.undoLastAction();
 					return;
 				case "7":
-					loginScreen();
+					MenuSelections.viewReservationHistory();
 					return;
 				case "8":
+					loginScreen();
+					return;
+				case "9":
 					MenuSelections.exitProgram();
 					return;
 				default:

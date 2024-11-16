@@ -143,6 +143,8 @@ public class MenuSelections {
 								TextBasedGUI.currentClient.reservedSeats.add(currentSeat);
 								Stadium.clientSeatReserved.put(currentSeat, TextBasedGUI.currentClient);
 
+								TextBasedGUI.currentClient.reservationHistory.add("Usted reservo el asiento #" + currentSeat.getSeatNumber() + ", de la Fila #" + currentSeat.getSeatRow() + ", de la Seccion: " + currentSeat.getSeatLevel());
+
 								TextBasedGUI.currentAction = new ClientActions(TextBasedGUI.currentClient, currentSeat, "Reserve");
 
 								ClientActions.actionHistory.push(TextBasedGUI.currentAction);
@@ -255,6 +257,8 @@ public class MenuSelections {
 									System.out.println("\n" + "Reserva cancelada exitosamente!");
 	
 									TextBasedGUI.currentAction = new ClientActions(TextBasedGUI.currentClient, currentSeat, "Cancel");
+
+									TextBasedGUI.currentClient.reservationHistory.add("Usted cancelo su reserva del asiento #" + currentSeat.getSeatNumber() + ", de la Fila #" + currentSeat.getSeatRow() + ", de la Seccion: " + currentSeat.getSeatLevel());
 
 									ClientActions.actionHistory.push(TextBasedGUI.currentAction);
 
@@ -409,6 +413,25 @@ public class MenuSelections {
 			System.out.println("\n" + "Se ha deshecho la ultima accion!");
 		}
 
+		System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+	    
+	    TextBasedGUI.inputScanner.nextLine();
+
+		TextBasedGUI.mainMenuScreen();
+	}
+
+	public static void viewReservationHistory() {
+		System.out.println("\n" + "========================================");
+		System.out.println("      HISTORIAL DE RESERVAS");
+		System.out.println("========================================" + "\n");
+
+		if (TextBasedGUI.currentClient.reservationHistory.isEmpty()) {
+			System.out.println("\n" + "Ningun historial disponible!");
+		} else {	
+			for (int i = 0; i < TextBasedGUI.currentClient.reservationHistory.size(); i++) {
+			System.out.println("\n" + TextBasedGUI.currentClient.reservationHistory.get(i));
+			}
+		}
 		System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
 	    
 	    TextBasedGUI.inputScanner.nextLine();

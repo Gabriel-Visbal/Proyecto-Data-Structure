@@ -1,12 +1,15 @@
 package dataProject;
 
 import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Clients {
 	public String clientName;
 	public String clientEmail;
 	public String clientPhoneNumber;
 	
+	public ArrayList<String> reservationHistory = new ArrayList<String>();
+
 	public LinkedList<Seats> reservedSeats = new LinkedList<Seats>();
 	
 	Clients(String clientName, String clientEmail, String clientPhoneNumber) {
@@ -46,10 +49,6 @@ public class Clients {
 	}
 
 	public boolean isSameClient(Clients otherClient) {
-		if (this == otherClient) {
-			return true;
-		}
-
 		return this.clientName.equals(otherClient.clientName) && this.clientEmail.equals(otherClient.clientEmail) && this.clientPhoneNumber.equals(otherClient.clientPhoneNumber);
 	}
 
