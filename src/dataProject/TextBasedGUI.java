@@ -136,14 +136,15 @@ public class TextBasedGUI {
 		System.out.println("5. Ver Datos del Cliente");
 		System.out.println("6. Deshacer Ultima Accion");
 		System.out.println("7. Ver Historial de Reservaciones");
-		System.out.println("8. Cerrar Sesion");
-		System.out.println("9. Salir del Sistema" + "\n");
+		System.out.println("8. Vista de Administrador");
+		System.out.println("9. Cerrar Sesion");
+		System.out.println("10. Salir del Sistema" + "\n");
 		
 		isInputValid = false;
 		
 		//Verifica que lo que elegio el cliente es una opcion valida, sigue preguntando hasta que eso se cumpla
 	    while (!isInputValid) {
-			System.out.println("Selecciona una opcion (1-9): ");
+			System.out.println("Selecciona una opcion (1-10): ");
 			menuSelection = inputScanner.nextLine().trim();
 			
 			isInputValid = true;
@@ -170,9 +171,12 @@ public class TextBasedGUI {
 					MenuSelections.viewReservationHistory(); //Envia al cliente al apartado de ver todo su historial de reservas, cancelaciones, cosas que deshizo
 					return;
 				case "8":
-					loginScreen(); //Vuelve a la pantalla de login - inicio de sesion para entrar con otro usuario
+					MenuSelections.administratorView(); //Vista de administrador
 					return;
 				case "9":
+					loginScreen(); //Vuelve a la pantalla de login - inicio de sesion para entrar con otro usuario
+					return;
+				case "10":
 					MenuSelections.exitProgram(); //Llama la funcion de cerrar el programa
 					return;
 				default:

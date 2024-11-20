@@ -537,6 +537,60 @@ public class MenuSelections {
 		TextBasedGUI.mainMenuScreen();
 	}
 	
+	public static void administratorView() {
+		System.out.println("\n" + "========================================");
+		System.out.println("      VISTA DE ADMINISTRADOR");
+		System.out.println("========================================");
+
+		String username = "admin"; //Usuario valido para entrar a la vista de admin
+
+		String password = "admin"; //Password valido para entrar a la vista de admin
+
+		String inputUsername = "";
+		String inputPassword = "";
+
+		TextBasedGUI.isInputValid = false;
+
+		//Le printea al admin todos los asientos, sigue preguntando hasta que el usuario y el password sean validos
+		while(!TextBasedGUI.isInputValid) {
+			System.out.println("\n" + "Inserte Usuario o Enter para Volver al menu principal: ");
+			inputUsername = TextBasedGUI.inputScanner.nextLine();
+
+			if (inputUsername.equals("")) { //Si le da al enter, envialo al menu principal
+				TextBasedGUI.mainMenuScreen();
+			}
+
+			System.out.println("Password o Enter para volver al menu principal: ");
+			inputPassword = TextBasedGUI.inputScanner.nextLine();
+
+			if (inputPassword.equals("")) {  //Si le da al enter, envialo al menu principal
+				TextBasedGUI.mainMenuScreen();
+			}
+
+			//Si el usuario y el password son validos, printea todos los asientos
+			if (inputUsername.equals(username) && inputPassword.equals(password)) {
+				for (Seats seat : Seats.seatsSet) {
+					if (Stadium.clientSeatReserved.containsKey(seat)) { //Si un cliente tiene ese asiento reservado, printea tambien su nombre
+						Clients client = Stadium.clientSeatReserved.get(seat);
+						System.out.println("-" + seat + " por: " + client);
+					} else { //Si nadie tiene este asiento, solo printea los datos del asiento
+					System.out.println("-" + seat);
+				}
+			}
+
+			TextBasedGUI.isInputValid = true;
+		} else {
+			System.out.println("\n" + "Usuario o Password Invalido!"); //Print cuando el usuario o el password no son validos
+		}
+	}
+
+	System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+	    
+	TextBasedGUI.inputScanner.nextLine();
+
+	TextBasedGUI.mainMenuScreen();
+
+}
 	public static void exitProgram() {
 		System.out.println("\n" + "========================================");
 		System.out.println("      GRACIAS POR USAR EL PROGRAMA!");

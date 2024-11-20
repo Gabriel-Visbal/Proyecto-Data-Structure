@@ -103,7 +103,7 @@ public class Seats {
 	public String toString() {
 		//Si este asiento esta en uso, printea tambien quien lo tiene reservado, de lo contrario printea que no esta reservado
 		if (Stadium.clientSeatReserved.containsKey(this)) {
-			return "Seccion: " + this.getSeatLevel() + ", Fila: #" + this.getSeatRow() + ", Asiento: #" + this.getSeatNumber()+ ", Reservado por: " + Stadium.clientSeatReserved.get(this) + ".";
+			return "Seccion: " + this.getSeatLevel() + ", Fila: #" + this.getSeatRow() + ", Asiento: #" + this.getSeatNumber()+ ", Reservado";
 		} else {
 			return "Seccion: " + this.getSeatLevel() + ", Fila: #" + this.getSeatRow() + ", Asiento: #" + this.getSeatNumber()+ ", No Reservado.";
 		}
