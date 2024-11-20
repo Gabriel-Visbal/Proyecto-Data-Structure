@@ -568,7 +568,7 @@ public class MenuSelections {
 			}
 
 			//Si el usuario y el password son validos, printea todos los asientos
-			if (inputUsername.equals(username) && inputPassword.equals(password)) {
+			if (inputUsername.trim().equals(username) && inputPassword.trim().equals(password)) {
 				for (Seats seat : Seats.seatsSet) {
 					if (Stadium.clientSeatReserved.containsKey(seat)) { //Si un cliente tiene ese asiento reservado, printea tambien su nombre
 						Clients client = Stadium.clientSeatReserved.get(seat);
