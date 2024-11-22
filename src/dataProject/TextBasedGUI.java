@@ -46,7 +46,7 @@ public class TextBasedGUI {
             }
 
             if (!isInputValid) {
-            	System.out.println("Nombre invalido. Asegurese de que contenga solo letras.");
+            	System.out.println("Nombre invalido. Asegurese de que contenga solo letras o espacios.");
             }
         }
         
