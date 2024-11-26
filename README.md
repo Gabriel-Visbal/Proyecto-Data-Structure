@@ -1,6 +1,6 @@
 # Proyecto-Data-Structure
 
-##Integrantes: 
+## Integrantes: 
 
 - Gabriel Visbal Rodriguez (802-23-4640)
 
