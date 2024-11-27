@@ -69,10 +69,17 @@
 
   ### Clase MenuSelections
 
-    #### Atributos:
-
     #### Métodos:
 
+  - stadiumAvailability(), seatAvailability(): Le pregunta al cliente que sección de asientos desea escoger, de acuerdo a la sección que el cliente escogió, le muestra todos los asientos de esa seccion y le permite realizar el pago.
+  - viewReservations(): Le muestra al cliente todas sus reservaciones actuales.
+  - cancelReservations(): Le permite al cliente cancelar reservaciones actuales.
+  - viewWaitingList(), queuePositions(): Le muestran al cliente en que posiciones de la lista de espera de cada seccion se encuentran.
+  - clientData(): Imprime la información del cliente.
+  - undoLastAction(): Le permite al cliente cancelar su ultima acción, ya sea una reserva o una cancelación.
+  - viewReservationHistory(): Le muestra al cliente todo el historial de lo que ha realizado en el programa.
+  - administratorView(): Vista de administrador para ver todos los asientos y quien tiene la reserva de cada uno. Usuario y contraseña son "admin".
+  - exitProgram(): Cierra el programa completamente.
 
 ### File Seats
 
