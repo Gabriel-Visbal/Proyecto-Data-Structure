@@ -37,7 +37,6 @@
     -	getActionType(): Devuelve el tipo de acción realizada.
     -	setActionType(String newActionType): Actualiza el tipo de acción.
  
-
 ### File Clients
 
 - El file Clients contiene la clase que gestiona la información de los clientes, como nombre, correo electrónico, número de teléfono y su historial de reservas. Esta clase permite crear, actualizar y consultar los datos de los clientes.
@@ -45,6 +44,7 @@
   ### Clase Clients
 
     #### Atributos:
+  
     -	clientName: Nombre del cliente.
     -	clientEmail: Correo electrónico del cliente.
     -	clientPhoneNumber: Número de teléfono del cliente.
@@ -52,6 +52,7 @@
     -	reservedSeats: Asientos reservados actualmente por el cliente.
 
     #### Constructor:
+  
     -	Clients(String clientName, String clientEmail, String clientPhoneNumber):
     Inicializa un nuevo cliente con el nombre, correo electrónico y número de teléfono              especificados.
 
@@ -88,7 +89,23 @@
   ### Clase Seats
 
     #### Atributos:
-
+    -	seatLevel: Sección del asiento.
+    -	seatRow: Número de fila del asiento.
+    -	seatNumber: Número del asiento.
+    -	seatPrice: Precio del asiento.
+    -	seatPrice: Guarda todos los asientos del estadio.
+    -	fieldSeats: Guarda los asientos de la seccion Field.
+    -	mainSeats: Guarda los asientos de la seccion Main.
+    -	grandstandSeats: Guarda los asientos de la seccion Grandstand.
+    -	fieldWaitingList: Guarda los clientes en la lista de espera de la seccion Field.
+    -	mainWaitingList: Guarda los clientes en la lista de espera de la seccion Main.
+    - grandstandWaitingList: Guarda los clientes en la lista de espera de la seccion Grandstand.
+ 
+    #### Constructor:
+  
+    -	Seats(String seatLevel, int seatRow, int seatNumber):
+    Inicializa un nuevo asiento con la sección, número de fila y número de asiento              especificados. Además, le asigna un precio específico de acuerdo a la sección, 
+      
     #### Métodos:
 
 
