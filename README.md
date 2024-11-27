@@ -14,7 +14,7 @@
 
 ## Funcionalidad del Proyecto: 
 
-- Nuestro proyecto consta de seis files donde se dividen las tareas para la ejecucion de este proyecto
+- Nuestro proyecto consta de seis files donde se dividen las tareas para la ejecución de este proyecto
 
 ### File ClientActions
 
@@ -105,7 +105,7 @@
     #### Constructor:
   
     -	Seats(String seatLevel, int seatRow, int seatNumber):
-    Inicializa un nuevo asiento con la sección, número de fila y número de asiento              especificados. Además, le asigna un precio específico de acuerdo a la sección, 
+    Inicializa un nuevo asiento con la sección, número de fila y número de asiento              especificados. Además, le asigna un precio específico de acuerdo a la sección.
       
     #### Métodos:
   
@@ -134,7 +134,7 @@
 
  ### File TextBasedGUI
 
-- El file TextBasedGUI contiene la clase que gestiona los prints para el cliente, como solicitar su informacion, mostrar los diferentes casos.
+- El file TextBasedGUI contiene la clase que gestiona los prints para el cliente, como solicitar su información, mostrar los diferentes casos.
 
   ### Clase TextBasedGUI:
 
