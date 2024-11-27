@@ -94,7 +94,7 @@
     -	seatRow: Número de fila del asiento.
     -	seatNumber: Número del asiento.
     -	seatPrice: Precio del asiento.
-    -	seatPrice: Guarda todos los asientos del estadio.
+    -	seatSet: Guarda todos los asientos del estadio.
     -	fieldSeats: Guarda los asientos de la seccion Field.
     -	mainSeats: Guarda los asientos de la seccion Main.
     -	grandstandSeats: Guarda los asientos de la seccion Grandstand.
