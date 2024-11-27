@@ -40,7 +40,7 @@
 
 ### Folder Clients
 
-- El folder Clients contiene clases que gestionan la información de los clientes, como nombre, correo electrónico, número de teléfono y su historial de reservas. Esta clase permite crear, actualizar y consultar los datos de los clientes.
+- El folder Clients contiene la clase que gestiona la información de los clientes, como nombre, correo electrónico, número de teléfono y su historial de reservas. Esta clase permite crear, actualizar y consultar los datos de los clientes.
 
   ### Clase Clients
 
@@ -63,6 +63,47 @@
     -	isSameClient(Clients otherClient): Verifica si dos clientes son iguales comparando su         nombre, email y teléfono.
     -	toString(): Devuelve el nombre del cliente.
 
+### Folder MenuSelections
+
+- El folder menuSelections contiene la clase que gestiona todos los casos posibles que el usuario puede seleccionar. Se ejecuta las acciones que el usuario ha elegido, como reservar un asiento, cancelar un asiento, ver la lista de espera, entre otras.
+
+  ### Clase MenuSelections
+
+    #### Atributos:
+
+    #### Métodos:
+
+
+### Folder Seats
+
+- El folder seats contiene la clase que gestiona las operaciones relacionadas con los asientos, como asignar asientos a los clientes, manejar las listas de espera y mantener un registro de los asientos reservados de cada sección.
+
+  ### Clase Seats
+
+    #### Atributos:
+
+    #### Métodos:
+
+
+### Folder Stadium
+
+- El folder Stadium contiene la clase que gestiona las secciones de los asientos, como asignar la capacidad de cada sección y confirmar la disponibilidad de los mismos.
+
+  ### Clase Stadium
+
+    #### Atributos:
+
+    #### Métodos:
+
+### Folder TextBasedGUI
+
+- El folder TextBasedGUI contiene la clase que gestiona los prints para el usuario, como solicitar su informacion, mostrar los diferentes casos.
+
+  ### Clase TextBasedGUI
+
+  #### Atributos:
+
+  #### Métodos:
 
 
 
