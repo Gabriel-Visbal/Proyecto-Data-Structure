@@ -62,7 +62,7 @@
     -	setClientName(), setClientEmail(), setClientPhoneNumber(): Permiten actualizar los datos      del cliente.
     -	printClientData(): Imprime todos los datos del cliente.
     -	isSameClient(Clients otherClient): Verifica si dos clientes son iguales comparando su         nombre, email y teléfono.
-    -	toString(): Devuelve el nombre del cliente.
+    -	toString(): Override al método de java para que el nombre del objeto Clients sea el nombre del cliente.
 
 ### File MenuSelections
 
@@ -107,8 +107,14 @@
     Inicializa un nuevo asiento con la sección, número de fila y número de asiento              especificados. Además, le asigna un precio específico de acuerdo a la sección, 
       
     #### Métodos:
-
-
+  
+    -	getSeatLevel(), getSeatRow(), getSeatNumber(), getSeatPrice(): Devuelven la información del       asiento.
+    -	setSeatLevel(), setSeatRow(), setSeatNumber(), setSeatPrice(): Permiten actualizar los datos      del asiento.
+    -	printClientData(): Imprime todos los datos del cliente.
+    -	toString(): Override al método de java para que el nombre del objeto Seats sean los datos del asiento.
+    -	initializeFieldSeats(), initializeMainSeats(), initializeGrandstandSeats(): Crea todos los objetos Seats que se van a usar en el programa de acuerdo a la seccion y capacidad. Además, añade estos asientos y sus respectivas listas.
+    -	areAllSeatsReserved(): Dado un ArrayList de Seats, verifica si todos los asientos de ese ArrayList estan reservados.
+      
 ### File Stadium
 
 - El file Stadium contiene la clase que gestiona las secciones de los asientos, como asignar la capacidad de cada sección y confirmar la disponibilidad de los mismos.
@@ -117,17 +123,23 @@
 
     #### Atributos:
 
+    - clientSeatReserved: Hashmap que tiene como key un objeto Seats y como value un objeto Clients, este hashmap es utilizado para parear a los asientos con el respectivo cliente que lo tiene reservado.
+ 
+    - programRunning: Boolean que se encarga del loop principal del programa.
+
     #### Métodos:
+
+    - main(): Método main del programa, aqui se llaman los metodos de inicialización de asientos y luego la pantalla de inicio de sesión para empezar el programa.
 
 ### File TextBasedGUI
 
-- El file TextBasedGUI contiene la clase que gestiona los prints para el usuario, como solicitar su informacion, mostrar los diferentes casos.
+  - El file TextBasedGUI contiene la clase que gestiona los prints para el usuario, como solicitar su informacion, mostrar los diferentes casos.
 
   ### Clase TextBasedGUI
 
-  #### Atributos:
-
-  #### Métodos:
+    #### Atributos:
+  
+    #### Métodos:
 
 
 
