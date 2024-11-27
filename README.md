@@ -89,6 +89,7 @@
   ### Clase Seats
 
     #### Atributos:
+  
     -	seatLevel: Sección del asiento.
     -	seatRow: Número de fila del asiento.
     -	seatNumber: Número del asiento.
@@ -131,20 +132,22 @@
 
     - main(): Método main del programa, aqui se llaman los metodos de inicialización de asientos y luego la pantalla de inicio de sesión para empezar el programa.
 
-### File TextBasedGUI
+ ### File TextBasedGUI
 
   - El file TextBasedGUI contiene la clase que gestiona los prints para el usuario, como solicitar su informacion, mostrar los diferentes casos.
 
-  ### Clase TextBasedGUI
+   ### Clase TextBasedGUI:
 
-    #### Atributos:
-  
-    #### Métodos:
+  #### Atributos:
 
+  -	inputScanner: Scanner que se utiliza durante el programa para el input del cliente
+  -	isInputValid, isLevelInputValid, isLevelInputValid: Booleans utilizados en los loops donde el cliente debe de escribir un input.
+  -	currentClient: Objeto cliente que está utilizando el programa actualmente.
+  -	currentAction: Objeto que guarda la ultima acción realizada en el programa.
+  -	allClientsList: Guarda todos los clientes que han utilizado el programa.
+  -	menuSelection: Guarda el input del cliente.
 
+ #### Métodos:
 
-    
-
-  
-
-
+ - loginScreen(): Le pregunta al cliente su nombre, email y número de telefono para luego almacenarlo en un objeto cliente. Si este cliente ya existe, utiliza el objeto Clients que ya estaba anteriormente en la lista de clientes.
+ - mainMenuScreen(): Menú principal del programa, aqui se encuentran todos lo que el cliente puede realizar en el programa, de acuerdo a lo que seleccione el cliente, llama al respectivo método asociado con esa selección.
