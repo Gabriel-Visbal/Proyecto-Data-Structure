@@ -14,7 +14,7 @@
 
 ## Funcionalidad del Proyecto: 
 
-- Nuestro proyecto consta de seis folders donde se dividen las tareas para la ejecucion de este proyecto
+- Nuestro proyecto consta de seis files donde se dividen las tareas para la ejecucion de este proyecto
 
 ### File ClientActions
 
