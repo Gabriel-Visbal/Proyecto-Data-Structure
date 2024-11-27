@@ -141,7 +141,7 @@
    #### Atributos:
 
     -	inputScanner: Scanner que se utiliza durante el programa para el input del cliente
-    -	isInputValid, isLevelInputValid, isLevelInputValid: Booleans utilizados en los loops donde el cliente debe de escribir un input.
+    -	isInputValid, isLevelInputValid, isReserveInputValid: Booleans utilizados en los loops donde el cliente debe de escribir un input.
     -	currentClient: Objeto cliente que está utilizando el programa actualmente.
     -	currentAction: Objeto que guarda la ultima acción realizada en el programa.
     -	allClientsList: Guarda todos los clientes que han utilizado el programa.
