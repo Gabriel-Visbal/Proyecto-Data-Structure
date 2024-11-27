@@ -134,7 +134,7 @@
 
  ### File TextBasedGUI
 
-- El file TextBasedGUI contiene la clase que gestiona los prints para el usuario, como solicitar su informacion, mostrar los diferentes casos.
+- El file TextBasedGUI contiene la clase que gestiona los prints para el cliente, como solicitar su informacion, mostrar los diferentes casos.
 
   ### Clase TextBasedGUI:
 
