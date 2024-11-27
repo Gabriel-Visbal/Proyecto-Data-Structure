@@ -149,5 +149,5 @@
 
    #### Métodos:
 
-    - loginScreen(): Le pregunta al cliente su nombre, email y número de telefono para luego almacenarlo en un objeto cliente. Si este cliente ya existe, utiliza el objeto Clients que ya estaba anteriormente en la lista de clientes. Guardando así toda las reservas e historial que tenia anteriormente.
+    - loginScreen(): Le solicita al cliente su nombre, correo electrónico y número de teléfono para crear un objeto Client. Si el cliente ya existe en la lista de clientes, se usa ese objeto que ya está en la lista, conservando así todas sus reservas e historial. De lo contrario, se hace un nuevo cliente y se añade a la lista de clientes.
     - mainMenuScreen(): Menú principal del programa, aqui se encuentran todos lo que el cliente puede realizar en el programa, de acuerdo a lo que seleccione el cliente, llama al respectivo método asociado con esa selección.
