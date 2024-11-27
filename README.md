@@ -113,7 +113,7 @@
     -	setSeatLevel(), setSeatRow(), setSeatNumber(), setSeatPrice(): Permiten actualizar los datos      del asiento.
     -	printClientData(): Imprime todos los datos del cliente.
     -	toString(): Override al método de java para que el nombre del objeto Seats sean los datos del asiento.
-    -	initializeFieldSeats(), initializeMainSeats(), initializeGrandstandSeats(): Crea todos los objetos Seats que se van a usar en el programa de acuerdo a la seccion y capacidad. Además, añade estos asientos y sus respectivas listas.
+    -	initializeFieldSeats(), initializeMainSeats(), initializeGrandstandSeats(): Crea todos los objetos Seats que se van a usar en el programa de acuerdo a la seccion y capacidad. Además, añade estos asientos a sus respectivas listas.
     -	areAllSeatsReserved(): Dado un ArrayList de Seats, verifica si todos los asientos de ese ArrayList estan reservados.
       
 ### File Stadium
