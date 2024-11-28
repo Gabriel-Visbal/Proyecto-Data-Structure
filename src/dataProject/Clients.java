@@ -1,7 +1,7 @@
 package dataProject;
 
-import java.util.LinkedList;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Clients {
 	public String clientName;
@@ -9,10 +9,10 @@ public class Clients {
 	public String clientPhoneNumber;
 	
 	//Guarda las reservaciones del cliente en strings
-	public ArrayList<String> reservationHistory = new ArrayList<String>();
+	public ArrayList<String> reservationHistory = new ArrayList<>();
 
 	//Guarda los asientos que actualmente tiene reservado el cliente
-	public LinkedList<Seats> reservedSeats = new LinkedList<Seats>();
+	public LinkedList<Seats> reservedSeats = new LinkedList<>();
 	
 	Clients(String clientName, String clientEmail, String clientPhoneNumber) {
 		this.clientName = clientName;
@@ -49,9 +49,9 @@ public class Clients {
 	
 	//Printea todos los datos del cliente
 	public void printClientData() {
-		System.out.println("Nombre: " + this.clientName);
-		System.out.println("Correo Electronico: " + this.clientEmail);
-		System.out.println("Numero de Telefono: " + this.clientPhoneNumber);
+		System.out.println("Nombre: " + "\u001B[32m" + this.clientName + "\u001B[0m");
+		System.out.println("Correo Electronico: " + "\u001B[32m" + this.clientEmail + "\u001B[0m");
+		System.out.println("Numero de Telefono: " + "\u001B[32m" + this.clientPhoneNumber + "\u001B[0m");
 	}
 
 	//Verifica si dos clientes tienen exactamente los mismos datos, basicamente un (.equals)

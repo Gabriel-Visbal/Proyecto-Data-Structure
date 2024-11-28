@@ -11,15 +11,15 @@ public class MenuSelections {
 		System.out.println("       DISPONIBILIDAD DEL ESTADIO");
 		System.out.println("========================================" + "\n");
 
-		System.out.println("1. Field (Costo: $300)");
-		System.out.println("2. Main (Costo: $120)");
-		System.out.println("3. Grandstand (Costo: $45)" + "\n");
+		System.out.println("1. Field (Costo: " + "\u001B[32m" + "$300" + "\u001B[0m" + ")");
+		System.out.println("2. Main (Costo: " + "\u001B[32m" + "$120" + "\u001B[0m" + ")");
+		System.out.println("3. Grandstand (Costo: " + "\u001B[32m" + "$45" + "\u001B[0m" + ")" + "\n");
 		
 		TextBasedGUI.isInputValid = false;
 		
 		//Verifica que el cliente seleccione una opcion que sea valida del 1 al 3, field, main o grandstand, sigue preguntando hasta que eso se cumpla
 	    while (!TextBasedGUI.isInputValid) {
-			System.out.println("Selecciona una opcion (1-3) o 'Enter' para volver al menu principal: ");
+			System.out.println("Selecciona una opcion (" + "\u001B[34m" + "1-3" + "\u001B[0m" + ") o 'Enter' para volver al menu principal: ");
 			TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine().trim();
 			
 			TextBasedGUI.isInputValid = true;
@@ -37,7 +37,7 @@ public class MenuSelections {
             	   TextBasedGUI.mainMenuScreen(); //Si el cliente le da al enter, vuelve al menu principal
                    break;
                default:
-            	   System.out.println("\n" + "Seleccion no valida!"); //El input de cliente no es valido
+            	   System.out.println("\n" + "\u001B[31m" + "Seleccion no valida!" + "\u001B[0m"); //El input de cliente no es valido
             	   TextBasedGUI.isInputValid = false;
                    break;
            }
@@ -125,7 +125,7 @@ public class MenuSelections {
 		
 		//Si no todos los asientos estan reservados, printea todos los asientos para que el clienta seleccione el que desee, sigue preguntando hasta que la seleccion sea valida
 	    while (!TextBasedGUI.isLevelInputValid) {
-	       System.out.println("\n" + "Selecciona una opcion (1-" + arrSeats.size() + ") o 'Enter' para volver al menu principal: ");
+	       System.out.println("\n" + "Selecciona una opcion (" + "\u001B[34m" + "1-" + arrSeats.size() + "\u001B[0m" + ") o 'Enter' para volver al menu principal: ");
 	       TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine().trim();
 	       
 	       if (TextBasedGUI.menuSelection.equals("")) { //Si el cliente le da al enter, envialo al menu principal
@@ -162,13 +162,13 @@ public class MenuSelections {
 
 						//Le pregunta al cliente si quiere confirmar la reserva, que escriba (si/no), sigue preguntando hasta que la seleccion sea valida
 						while (!TextBasedGUI.isReserveInputValid) {
-							System.out.println("\n" + "Desea confirmar la reserva? (Si/No): ");
+							System.out.println("\n" + "Desea confirmar la reserva? (" + "\u001B[34m" + "Si/No" + "\u001B[0m" + "): ");
 				
 							TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine().trim();
 
 							//Si el cliente escribe que si, añade la reserva a su nombre
 							if (TextBasedGUI.menuSelection.toLowerCase().equals("si") || TextBasedGUI.menuSelection.toLowerCase().equals("s")) {
-								System.out.println("\n" + "Reserva confirmada exitosamente!");
+								System.out.println("\n" + "\u001B[32m" + "Reserva confirmada exitosamente!" + "\u001B[0m");
 
 								TextBasedGUI.currentClient.reservedSeats.add(currentSeat); //Le añade el asiento a la lista de asientos reservados por el cliente
 								Stadium.clientSeatReserved.put(currentSeat, TextBasedGUI.currentClient); //Parea el asiento con el cliente en el hashmap de Asientos - Clientes
@@ -192,16 +192,16 @@ public class MenuSelections {
 
 							  //Si el cliente escribe que no, envialo al menu principal
 							} else if (TextBasedGUI.menuSelection.toLowerCase().equals("no") || TextBasedGUI.menuSelection.toLowerCase().equals("n")) {
-								System.out.println("\n" + "Reserva no confirmada!");
+								System.out.println("\n" + "\u001B[33m" + "Reserva no confirmada!" + "\u001B[0m");
 
 								TextBasedGUI.isReserveInputValid = true;
-								System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+								System.out.println("\n" + "\u001B[5;34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
 	
 								TextBasedGUI.inputScanner.nextLine();
 						
 								TextBasedGUI.mainMenuScreen();
 							} else {
-								System.out.println("\n" + "Seleccion no valida!"); //El input de cliente no es valido
+								System.out.println("\n" + "\u001B[31m" + "Seleccion no valida!" + "\u001B[0m"); //El input de cliente no es valido
 							}
 
 						}
@@ -209,10 +209,10 @@ public class MenuSelections {
 	                    TextBasedGUI.isLevelInputValid = false;
 	                    
 	                } else {
-	                	System.out.println("\n" + "Seleccion no valida!"); //El input de cliente no es valido
+	                	System.out.println("\n" + "\u001B[31m" + "Seleccion no valida!" + "\u001B[0m"); //El input de cliente no es valido
 	                  }        
 	            } catch (NumberFormatException error) {
-	            	System.out.println("\n" + "Seleccion no valida!"); //El input de cliente no es valido
+	            	System.out.println("\n" + "\u001B[31m" + "Seleccion no valida!" + "\u001B[0m"); //El input de cliente no es valido
 	              }
 	        }
 	    }
@@ -229,11 +229,11 @@ public class MenuSelections {
 		
 		//Si el cliente no tiene reservaciones, printea un mensaje diciendo que no tiene reservaciones
 		if (TextBasedGUI.currentClient.reservedSeats.isEmpty()) {
-			System.out.println("No hay reservaciones actuales.");
+			System.out.println("\u001B[33m" + "No hay reservaciones actuales." + "\u001B[0m");
 
 		} else {
 			//Si tiene reservaciones, le printea todoas las reservaciones que tiene actualmente por secciones, numero y fila
-			System.out.println("Reservaciones actuales: " + "\n");
+			System.out.println("\u001B[32m" + "Reservaciones actuales: " + "\u001B[0m" + "\n");
 
 	        for (Seats seat : TextBasedGUI.currentClient.reservedSeats) {
 				System.out.println("- " + seat.getSeatLevel() + ", Fila: #" + seat.getSeatRow() + ", Asiento: #" + seat.getSeatNumber());
@@ -243,7 +243,7 @@ public class MenuSelections {
 
 	    }
 		
-		System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+		System.out.println("\n" + "\u001B[6;34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
 	    
 	    TextBasedGUI.inputScanner.nextLine();
 
@@ -258,10 +258,10 @@ public class MenuSelections {
 
 		//Si el cliente no tiene reservas, printea que no tiene reservas actualmente
 		if (TextBasedGUI.currentClient.reservedSeats.isEmpty()) {
-			System.out.println("No hay reservaciones actuales.");
+			System.out.println("\u001B[33m" + "No hay reservaciones actuales." + "\u001B[0m");
 
 		} else {
-			System.out.println("Reservaciones actuales: " + "\n");
+			System.out.println("\u001B[32m" + "Reservaciones actuales: " + "\u001B[0m" + "\n");
 			//Printea todos los asientos reservados que tiene el cliente
 			for (int i = 0; i < TextBasedGUI.currentClient.reservedSeats.size(); i++) {
 				System.out.println((i + 1) + ". " + (TextBasedGUI.currentClient.reservedSeats.get(i)));
@@ -270,7 +270,7 @@ public class MenuSelections {
 		
 			//Le printea al cliente todos los asientos que tiene reservados para seleccione el que desea cancelar, sigue preguntando hasta que la seleccion sea valida
 			while (!TextBasedGUI.isLevelInputValid) {
-			   System.out.println("\n" + "Selecciona una opcion (1-" + TextBasedGUI.currentClient.reservedSeats.size() + ") para cancelar o 'Enter' para volver al menu principal: ");
+			   System.out.println("\n" + "Selecciona una opcion (" + "\u001B[34m" + "1-" + TextBasedGUI.currentClient.reservedSeats.size() + "\u001B[0m" + ") para cancelar o 'Enter' para volver al menu principal: ");
 			   TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine().trim();
 			   
 			   if (TextBasedGUI.menuSelection.equals("")) { //Si el cliente pone un enter, vuelve al menu principal
@@ -288,13 +288,13 @@ public class MenuSelections {
 							
 							//Le pregunta al cliente si quiere cancelar la reserva, que escriba (si/no), sigue preguntando hasta que la seleccion sea valida
 							while (!TextBasedGUI.isReserveInputValid) {
-								System.out.println("\n" + "Desea cancelar la reserva? (Si/No): ");
+								System.out.println("\n" + "Desea cancelar la reserva? (" + "\u001B[34m" + "Si/No" + "\u001B[0m" + "): ");
 					
 								TextBasedGUI.menuSelection = TextBasedGUI.inputScanner.nextLine().trim();
 
 							    //Si el cliente escribe que si, quita la reserva que esta a su nombre
 								if (TextBasedGUI.menuSelection.toLowerCase().equals("si") || TextBasedGUI.menuSelection.toLowerCase().equals("s")) {
-									System.out.println("\n" + "Reserva cancelada exitosamente!");
+									System.out.println("\n" + "\u001B[32m" + "Reserva cancelada exitosamente!" + "\u001B[0m");
 	
 									//Hace una nueva acción en el programa diciendo que este cliente cancelo su reserva de este asiento
 									TextBasedGUI.currentAction = new ClientActions(TextBasedGUI.currentClient, currentSeat, "Cancel");
@@ -345,7 +345,7 @@ public class MenuSelections {
 
 								  //Si el cliente escribe que no, envialo al menu principal
 								} else if (TextBasedGUI.menuSelection.toLowerCase().equals("no") || TextBasedGUI.menuSelection.toLowerCase().equals("n")) {
-									System.out.println("\n" + "Cancelacion de reserva no confirmada!");
+									System.out.println("\n" + "\u001B[33m" + "Cancelacion de reserva no confirmada!" + "\u001B[0m");
 	
 									TextBasedGUI.isReserveInputValid = true;
 									System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
@@ -354,7 +354,7 @@ public class MenuSelections {
 							
 									TextBasedGUI.mainMenuScreen();
 								} else {
-									System.out.println("\n" + "Seleccion no valida!"); //El input de cliente no es valido
+									System.out.println("\n" + "\u001B[31m" + "Seleccion no valida!" + "\u001B[0m"); //El input de cliente no es valido
 								}
 
 							}
@@ -362,10 +362,10 @@ public class MenuSelections {
 							TextBasedGUI.isLevelInputValid = false;
 							
 						} else {
-							System.out.println("\n" + "Seleccion no valida!"); //El input de cliente no es valido
+							System.out.println("\n" + "\u001B[31m" + "Seleccion no valida!" + "\u001B[0m"); //El input de cliente no es valido
 						  }        
 					} catch (NumberFormatException error) {
-						System.out.println("\n" + "Seleccion no valida!"); //El input de cliente no es valido
+						System.out.println("\n" + "\u001B[31m" + "Seleccion no valida!" + "\u001B[0m"); //El input de cliente no es valido
 					  }
 				}
 			}
@@ -400,7 +400,7 @@ public class MenuSelections {
 
 		//Empezamos en la posicion 1
 		int queuePosition = 1;
-		ArrayList<Integer> queuePositionList = new ArrayList<Integer>(); //Por si el cliente aparece en mas de una posicion, guarda las posiciones en un array
+		ArrayList<Integer> queuePositionList = new ArrayList<>(); //Por si el cliente aparece en mas de una posicion, guarda las posiciones en un array
 
 		//Itera el queue de lista de espera
 		while (waitingListIterator.hasNext()) {
@@ -414,9 +414,9 @@ public class MenuSelections {
 	
 		//Si no encontro el cliente, printea que no se encuentra en esa lista de espera
 		if (queuePositionList.isEmpty()) {
-			System.out.println(TextBasedGUI.currentClient.getClientName() + " no se encuentra en la lista de espera de " + seatlevel + "!" + "\n");
+			System.out.println("\u001B[32m" + TextBasedGUI.currentClient.getClientName() + "\u001B[0m" + " no se encuentra en la lista de espera de " + seatlevel + "!" + "\n");
 		} else { //Si se encontro el cliente, printea todas las posiciones en las que se encontro en esa lista de espera
-			System.out.println(TextBasedGUI.currentClient.getClientName() + " se encuentra en las posiciones " + queuePositionList + " de la lista de espera de " + seatlevel + "!" + "\n");
+			System.out.println("\u001B[32m" + TextBasedGUI.currentClient.getClientName() + "\u001B[0m" + " se encuentra en las posiciones " + queuePositionList + " de la lista de espera de " + seatlevel + "!" + "\n");
 		}
 	}
 
@@ -442,7 +442,7 @@ public class MenuSelections {
 
 		//Si no hay acciones para deshacer, printea que no hay acciones
 		if (ClientActions.actionHistory.isEmpty()) {
-			System.out.println("No hay acciones para deshacer.");
+			System.out.println("\u001B[33m" + "No hay acciones para deshacer." + "\u001B[0m");
 		} else {		
 			//Coge la ultima accion que sucedio del stack de acciones
 			ClientActions lastAction = ClientActions.actionHistory.pop();
@@ -459,7 +459,7 @@ public class MenuSelections {
 					//Añade el string de que el cliente deshizo su ultima accion a la lista de historial de actividades del cliente
 					TextBasedGUI.currentClient.reservationHistory.add(TextBasedGUI.currentClient.getClientName() + " deshizo su ultima accion: Reserva del asiento #" + lastAction.getSeat().getSeatNumber() + ", de la Fila #" + lastAction.getSeat().getSeatRow() + ", de la Seccion: " + lastAction.getSeat().getSeatLevel());
 					
-					System.out.println("Se ha deshecho la ultima accion!");
+					System.out.println("\u001B[32m" + "Se ha deshecho la ultima accion!" + "\u001B[0m");
 					
 					//Si hay clientes en la lista de espera, le asigna el asiento que se acaba de cancelar a ese cliente
 					switch (lastAction.getSeat().getSeatLevel()) {
@@ -492,7 +492,7 @@ public class MenuSelections {
 				case "Cancel":
 					//Si el cliente va a deshacer una cancelacion y ya alguien que estaba anteriormente en fila de espera tiene el asiento, printea que no puede reservar el asiento
 					if (Stadium.clientSeatReserved.containsKey(lastAction.getSeat())) {
-						System.out.println("No se puede deshacer la cancelacion debido a que el asiento ya fue asignado al proximo cliente en la lista de espera!");
+						System.out.println("\u001B[33m" + "No se puede deshacer la cancelacion debido a que el asiento ya fue asignado al proximo cliente en la lista de espera!" + "\u001B[0m");
 					} else {	
 						//Si no hay nadie, añade el asiento de nuevo a nombre del cliente				
 						lastAction.getClient().reservedSeats.add(lastAction.getSeat()); //Le añade el asiento a la lista de asientos reservados por el cliente
@@ -501,7 +501,7 @@ public class MenuSelections {
 						//Añade el string de que el cliente deshizo su ultima accion a la lista de historial de actividades del cliente
 						TextBasedGUI.currentClient.reservationHistory.add(TextBasedGUI.currentClient.getClientName() + " deshizo su ultima accion: Cancelacion de la reserva del asiento #" + lastAction.getSeat().getSeatNumber() + ", de la Fila #" + lastAction.getSeat().getSeatRow() + ", de la Seccion: " + lastAction.getSeat().getSeatLevel());
 
-						System.out.println("Se ha deshecho la ultima accion!");
+						System.out.println("\u001B[32m" + "Se ha deshecho la ultima accion!" + "\u001B[0m");
 					}
 					break;
 				default:
@@ -523,7 +523,7 @@ public class MenuSelections {
 
 		//Si el cliente no tiene ningun historial de actividades, printea que no tiene ningun historial disponible
 		if (TextBasedGUI.currentClient.reservationHistory.isEmpty()) {
-			System.out.println("Ningun historial disponible!" + "\n");
+			System.out.println("\u001B[33m" + "Ningun historial disponible!" + "\u001B[0m" + "\n");
 		} else {	
 			//Printea todo el historial al reves para que el que este mas arriba sea la actividad mas reciente
 			for (int i = TextBasedGUI.currentClient.reservationHistory.size() - 1; i >= 0; i--) {
@@ -572,7 +572,7 @@ public class MenuSelections {
 				for (Seats seat : Seats.seatsSet) {
 					if (Stadium.clientSeatReserved.containsKey(seat)) { //Si un cliente tiene ese asiento reservado, printea tambien su nombre
 						Clients client = Stadium.clientSeatReserved.get(seat);
-						System.out.println("-" + seat + " por: " + client);
+						System.out.println("-" + seat + "\u001B[32m" + " por: " + "\u001B[0m" + "\u001B[4;32m" + client + "\u001B[0m");
 					} else { //Si nadie tiene este asiento, solo printea los datos del asiento
 					System.out.println("-" + seat);
 				}
@@ -580,7 +580,7 @@ public class MenuSelections {
 
 			TextBasedGUI.isInputValid = true;
 		} else {
-			System.out.println("\n" + "Usuario o Password Invalido!"); //Print cuando el usuario o el password no son validos
+			System.out.println("\n" + "\u001B[31m" + "Usuario o Password Invalido!" + "\u001B[0m"); //Print cuando el usuario o el password no son validos
 		}
 	}
 

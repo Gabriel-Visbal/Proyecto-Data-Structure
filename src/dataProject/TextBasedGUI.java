@@ -1,8 +1,7 @@
 package dataProject;
 
-import java.util.Scanner;
-
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TextBasedGUI {
 	
@@ -16,7 +15,7 @@ public class TextBasedGUI {
 	public static ClientActions currentAction;
 	
 	//Lista que contiene todos los clientes que han usado el programa
-	public static ArrayList<Clients> allClientsList = new ArrayList<Clients>();
+	public static ArrayList<Clients> allClientsList = new ArrayList<>();
 
 	public static String menuSelection = "";
 	
@@ -46,7 +45,7 @@ public class TextBasedGUI {
             }
 
             if (!isInputValid) {
-            	System.out.println("Nombre invalido. Asegurese de que contenga solo letras o espacios.");
+            	System.out.println("\u001B[31m" + "Nombre invalido. Asegurese de que contenga solo letras o espacios." + "\u001B[0m" + "\n");
             }
         }
         
@@ -66,7 +65,7 @@ public class TextBasedGUI {
             }
 
             if (!isInputValid) {
-            	System.out.println("Correo electronico invalido. Asegurese de que contenga un '@'.");
+            	System.out.println("\u001B[31m" + "Correo electronico invalido. Asegurese de que contenga un '@'." + "\u001B[0m" + "\n");
             }
         }
         
@@ -90,7 +89,7 @@ public class TextBasedGUI {
             }
 
             if (!isInputValid) {
-            	System.out.println("Numero de telefono invalido. Asegurese de que contenga solo numeros o guiones.");
+            	System.out.println("\u001B[31m" + "Numero de telefono invalido. Asegurese de que contenga solo numeros o guiones." + "\u001B[0m" + "\n");
             }
         }
         
@@ -116,7 +115,7 @@ public class TextBasedGUI {
         }
 
 		System.out.println("\n" + "========================================");
-		System.out.println("       BIENVENIDO, " + currentClient.getClientName().toUpperCase());
+		System.out.println("       BIENVENIDO, " + "\u001B[32m" + currentClient.getClientName().toUpperCase() + "\u001B[0m");
 		System.out.println("========================================");
 		
 		//Pasa a la pantalla principal para que el cliente seleccione que quiere hacer
@@ -129,22 +128,22 @@ public class TextBasedGUI {
 		System.out.println("	     MENU PRINCIPAL");
 		System.out.println("========================================" + "\n");
 		
-		System.out.println("1. Ver Disponibilidad del Estadio");
-		System.out.println("2. Ver Reservaciones");
-		System.out.println("3. Cancelar Reservaciones");
-		System.out.println("4. Ver Lista de Espera");
-		System.out.println("5. Ver Datos del Cliente");
-		System.out.println("6. Deshacer Ultima Accion");
-		System.out.println("7. Ver Historial de Reservaciones");
-		System.out.println("8. Vista de Administrador");
-		System.out.println("9. Cerrar Sesion");
-		System.out.println("10. Salir del Sistema" + "\n");
+		System.out.println("\u001B[34m" + "1. Ver Disponibilidad del Estadio" + "\u001B[0m");
+		System.out.println("\u001B[34m" + "2. Ver Reservaciones" + "\u001B[0m");
+		System.out.println("\u001B[34m" + "3. Cancelar Reservaciones" + "\u001B[0m");
+		System.out.println("\u001B[34m" + "4. Ver Lista de Espera" + "\u001B[0m");
+		System.out.println("\u001B[34m" + "5. Ver Datos del Cliente" + "\u001B[0m");
+		System.out.println("\u001B[34m" + "6. Deshacer Ultima Accion" + "\u001B[0m");
+		System.out.println("\u001B[34m" + "7. Ver Historial de Reservaciones" + "\u001B[0m");
+		System.out.println("\u001B[34m" + "8. Vista de Administrador" + "\u001B[0m");
+		System.out.println("\u001B[34m" + "9. Cerrar Sesion" + "\u001B[0m");
+		System.out.println("\u001B[34m" + "10. Salir del Sistema" + "\u001B[0m" +"\n");
 		
 		isInputValid = false;
 		
 		//Verifica que lo que elegio el cliente es una opcion valida, sigue preguntando hasta que eso se cumpla
 	    while (!isInputValid) {
-			System.out.println("Selecciona una opcion (1-10): ");
+			System.out.println("Selecciona una opcion (" + "\u001B[34m" + "1-10" + "\u001B[0m" + "): ");
 			menuSelection = inputScanner.nextLine().trim();
 			
 			isInputValid = true;
@@ -180,7 +179,7 @@ public class TextBasedGUI {
 					MenuSelections.exitProgram(); //Llama la funcion de cerrar el programa
 					return;
 				default:
-					System.out.println("Seleccion no valida!");
+					System.out.println("\n" + "\u001B[31m" + "Seleccion no valida!" + "\u001B[0m");
 					isInputValid = false; //Si la seleccion no es valida, vuelve a preguntar de nuevo
 					break;
 			}

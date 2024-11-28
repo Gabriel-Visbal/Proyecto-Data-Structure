@@ -8,7 +8,7 @@ public class ClientActions {
     public String actionType;
 
 	//Stack que guarda todas las acciones que se hacen durante el programa, las reservaciones, las cancelaciones
-    public static Stack<ClientActions> actionHistory = new Stack<ClientActions>();
+    public static Stack<ClientActions> actionHistory = new Stack<>();
 
     ClientActions(Clients client, Seats seat, String actionType) {
         this.client = client;

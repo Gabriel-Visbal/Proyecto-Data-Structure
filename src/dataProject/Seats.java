@@ -1,13 +1,10 @@
 package dataProject;
 
 import java.util.ArrayList;
-
-import java.util.LinkedList;
-
-import java.util.Set;
 import java.util.HashSet;
-
+import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
 
 public class Seats {
 	public String seatLevel;
@@ -16,25 +13,25 @@ public class Seats {
 	public int seatPrice;
 	
 	//Guarda todos los asientos de cada seccion
-	public static Set<Seats> seatsSet = new HashSet<Seats>();
+	public static Set<Seats> seatsSet = new HashSet<>();
 	
 	//Guarda todos los asientos de la seccion field
-	public static ArrayList<Seats> fieldSeats = new ArrayList<Seats>();
+	public static ArrayList<Seats> fieldSeats = new ArrayList<>();
 
 	//Guarda todos los asientos de la seccion main
-	public static ArrayList<Seats> mainSeats = new ArrayList<Seats>();
+	public static ArrayList<Seats> mainSeats = new ArrayList<>();
 
 	//Guarda todos los asientos de la seccion grandstand
-	public static ArrayList<Seats> grandstandSeats = new ArrayList<Seats>();
+	public static ArrayList<Seats> grandstandSeats = new ArrayList<>();
 
 	//Guarda los clientes que estan en fila de espera de la seccion field
-	public static Queue<Clients> fieldWaitingList = new LinkedList<Clients>();
+	public static Queue<Clients> fieldWaitingList = new LinkedList<>();
 
 	//Guarda los clientes que estan en fila de espera de la seccion main
-	public static Queue<Clients> mainWaitingList = new LinkedList<Clients>();
+	public static Queue<Clients> mainWaitingList = new LinkedList<>();
 
 	//Guarda los clientes que estan en fila de espera de la seccion grandstand
-	public static Queue<Clients> grandstandWaitingList = new LinkedList<Clients>();
+	public static Queue<Clients> grandstandWaitingList = new LinkedList<>();
 
 	Seats(String seatLevel, int seatRow, int seatNumber) {
 		this.seatLevel = seatLevel;
@@ -103,18 +100,17 @@ public class Seats {
 	public String toString() {
 		//Si este asiento esta en uso, printea tambien quien lo tiene reservado, de lo contrario printea que no esta reservado
 		if (Stadium.clientSeatReserved.containsKey(this)) {
-			return "Seccion: " + this.getSeatLevel() + ", Fila: #" + this.getSeatRow() + ", Asiento: #" + this.getSeatNumber()+ ", Reservado";
+			return "Seccion: " + sectionColor(this.getSeatLevel()) + ", Fila: #" + this.getSeatRow() + ", Asiento: #" + this.getSeatNumber()+ ", " + "\u001B[32m" + "Reservado" + "\u001B[0m";
 		} else {
-			return "Seccion: " + this.getSeatLevel() + ", Fila: #" + this.getSeatRow() + ", Asiento: #" + this.getSeatNumber()+ ", No Reservado";
+			return "Seccion: " + sectionColor(this.getSeatLevel()) + ", Fila: #" + this.getSeatRow() + ", Asiento: #" + this.getSeatNumber()+ ", " + "\u001B[31m" + "No Reservado" + "\u001B[0m";
 		}
 	}
 	
 	//Inicializa todos los asientos field por numero de fila y numero de asiento
 	public static void initializeFieldSeats() {
-		//En la seccion field originalmente eran 4 rows y 5 seats por fila
 
-        int totalRows = 2; //Numero de filas que va a tener esta seccion
-        int seatsPerRow = 1; //Numero de asientos por fila
+        int totalRows = 4; //Numero de filas que va a tener esta seccion
+        int seatsPerRow = 5; //Numero de asientos por fila
 
         for (int row = 1; row <= totalRows; row++) {
             for (int seat = 1; seat <= seatsPerRow; seat++) {
@@ -163,4 +159,15 @@ public class Seats {
 		return true;
 	}
 
+	public static String sectionColor(String seatLevel){
+		switch(seatLevel){
+			case "Field": 
+				return "\u001B[35m" + seatLevel + "\u001B[0m";
+			case "Main":
+				return "\u001B[34m" + seatLevel + "\u001B[0m";
+			case "Grandstand":
+				return "\u001B[36m" + seatLevel + "\u001B[0m";
+		}
+		return "";
+	}
 }

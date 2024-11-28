@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Stadium {
 	
 	//Hashmap donde se parean los asientos y que cliente los tiene reservados
-	public static HashMap<Seats, Clients> clientSeatReserved = new HashMap<Seats, Clients>();
+	public static HashMap<Seats, Clients> clientSeatReserved = new HashMap<>();
 
 	//Se encarga del loop principal del programa
 	public static boolean programRunning = true; 
