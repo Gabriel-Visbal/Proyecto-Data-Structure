@@ -114,7 +114,7 @@ public class MenuSelections {
 				}
 			}
 
-			System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+			System.out.println("\n" + "\u001B[34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
 	
 			TextBasedGUI.inputScanner.nextLine(); //Si el cliente le da al enter, envialo al menu principal
 	
@@ -142,7 +142,7 @@ public class MenuSelections {
 						if (Stadium.clientSeatReserved.containsKey(currentSeat)) { //Si el cliente selecciona un asiento que ya esta reservado, printea que no puede reservar ese asiento
 							System.out.println("\n" + "Asiento ya reservado por: " + Stadium.clientSeatReserved.get(currentSeat).getClientName() + "!");
 
-							System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+							System.out.println("\n" + "\u001B[34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
 	
 							TextBasedGUI.inputScanner.nextLine();
 					
@@ -184,7 +184,7 @@ public class MenuSelections {
 
 								TextBasedGUI.isReserveInputValid = true;
 						
-								System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+								System.out.println("\n" + "\u001B[34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
 	
 								TextBasedGUI.inputScanner.nextLine();
 						
@@ -195,7 +195,7 @@ public class MenuSelections {
 								System.out.println("\n" + "\u001B[33m" + "Reserva no confirmada!" + "\u001B[0m");
 
 								TextBasedGUI.isReserveInputValid = true;
-								System.out.println("\n" + "\u001B[5;34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
+								System.out.println("\n" + "\u001B[34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
 	
 								TextBasedGUI.inputScanner.nextLine();
 						
@@ -243,7 +243,7 @@ public class MenuSelections {
 
 	    }
 		
-		System.out.println("\n" + "\u001B[6;34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
+		System.out.println("\n" + "\u001B[34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
 	    
 	    TextBasedGUI.inputScanner.nextLine();
 
@@ -337,7 +337,7 @@ public class MenuSelections {
 
 									TextBasedGUI.isReserveInputValid = true;
 									
-									System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+									System.out.println("\n" + "\u001B[34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
 		
 									TextBasedGUI.inputScanner.nextLine();
 							
@@ -348,7 +348,7 @@ public class MenuSelections {
 									System.out.println("\n" + "\u001B[33m" + "Cancelacion de reserva no confirmada!" + "\u001B[0m");
 	
 									TextBasedGUI.isReserveInputValid = true;
-									System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+									System.out.println("\n" + "\u001B[34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
 		
 									TextBasedGUI.inputScanner.nextLine();
 							
@@ -370,7 +370,7 @@ public class MenuSelections {
 				}
 			}
 		}
-		System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+		System.out.println("\n" + "\u001B[34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
 	    
 	    TextBasedGUI.inputScanner.nextLine();
 
@@ -386,7 +386,7 @@ public class MenuSelections {
 		queuePositions(Seats.mainWaitingList, "Main"); //Llama la funcion para ver si el cliente se encuentra en una lista de espera con el queue de asientos main
 		queuePositions(Seats.grandstandWaitingList, "Grandstand"); //Llama la funcion para ver si el cliente se encuentra en una lista de espera con el queue de asientos grandstand
 
-		System.out.println("Presione cualquier tecla para volver al menu principal...");
+		System.out.println("\u001B[34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
 	    
 	    TextBasedGUI.inputScanner.nextLine();
 
@@ -428,7 +428,7 @@ public class MenuSelections {
 		//Llama el metodo de printear todos los datos del cliente que cada objeto cliente tiene
 		TextBasedGUI.currentClient.printClientData();
 		
-	    System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+		System.out.println("\n" + "\u001B[34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
 	    
 	    TextBasedGUI.inputScanner.nextLine();
 	    
@@ -509,7 +509,7 @@ public class MenuSelections {
 			}
 		}
 
-		System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+		System.out.println("\n" + "\u001B[34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
 	    
 	    TextBasedGUI.inputScanner.nextLine();
 
@@ -530,7 +530,7 @@ public class MenuSelections {
 				System.out.println("-" + TextBasedGUI.currentClient.reservationHistory.get(i) + "\n");
 			}
 		}
-		System.out.println("Presione cualquier tecla para volver al menu principal...");
+		System.out.println("\u001B[34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
 	    
 	    TextBasedGUI.inputScanner.nextLine();
 
@@ -584,7 +584,7 @@ public class MenuSelections {
 		}
 	}
 
-	System.out.println("\n" + "Presione cualquier tecla para volver al menu principal...");
+	System.out.println("\n" + "\u001B[34m" + "Presione cualquier tecla para volver al menu principal..." + "\u001B[0m");
 	    
 	TextBasedGUI.inputScanner.nextLine();
 
